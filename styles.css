@@ -1,0 +1,145 @@
+html {
+   font-size: 13.5px;
+   font-weight: 500;
+}
+
+body {
+   margin: 0;
+   text-rendering: optimizeLegibility;
+}
+
+* {
+   box-sizing: border-box;
+}
+
+
+
+
+.header {
+   height: 45px;
+   display: flex;
+   border-bottom: 1px solid lightgray;
+}
+   
+   .header__left {
+      flex-grow: 1;
+      flex-basis: 10%;
+      display: flex;
+      align-items: center
+   }
+      
+      .header__menu {
+         width: 50px;
+         border-right: 1px solid lightgray;
+         align-self: stretch;
+         margin-right: 20px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+      }
+         .header__menu-link {
+            background-color: grey;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+         }
+      /**/
+
+      .header__mytasks {
+         margin-right: 30px;
+         text-decoration: none;
+         color: black;
+      }
+
+      .header__inbox {
+         margin-right: 30px;
+         text-decoration: none;
+         color: grey;
+      }
+
+      .header__plus {
+         background-color: orange;
+         height: 25px;
+         width: 25px;
+         border-radius: 100%;
+      }
+   /**/
+   
+   .header__middle {
+      flex-grow: 1;
+      flex-basis: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+
+      .header__form{
+         border: 1px solid lightgray;
+         border-radius: 20px;
+         padding: 0px 10px 0px 10px;
+         height: 35px;
+         display: flex;
+         align-items: center;
+      }
+
+         .header__lens-icon{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: lightgray;
+            margin-right: 10px;
+            border-radius: 100%
+         }
+
+         .header__input{
+            outline: none;
+            border: none;
+            width: 400px;
+            font-weight: 600;
+         }
+
+      /**/
+
+   /**/
+
+
+   .header__right {
+      flex-grow: 1;
+      flex-basis: 10%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+   }
+
+      .header__help {
+         margin-right: 35px;
+         text-decoration: none;
+         color: gray;
+      }
+
+         .header__arrow {
+            transform: rotate(90deg);
+            display: inline-block;
+         }
+
+      /**/
+
+      .header__projects {
+         margin-right: 15px;
+         text-decoration: none;
+         color: gray;
+         margin-right: 10px;
+      }
+
+      .header__user-img {
+         border: 1px solid gray;
+         background-color: white;
+         height: 30px;
+         width: 30px;
+         border-radius: 100%;
+         margin-right: 25px;
+      }
+
+   /**/
+
+/**/
