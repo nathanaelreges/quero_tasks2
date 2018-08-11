@@ -120,6 +120,7 @@
    
    .edit{
       padding: 20px 10px 0 10px;
+      width: 100%;
    }
 
       .edit__box{
@@ -206,6 +207,7 @@
             }
 
                .edit__close-text {
+                  pointer-events: none;
                   display: inline-block;
                   transform: rotate(45deg);
                }
@@ -214,7 +216,7 @@
          /**/
          
          .edit__body {
-            padding: 60px 20px 20px;
+            padding: 50px 20px 20px;
          }
 
             .edit__form{
@@ -228,7 +230,7 @@
                   padding: 3px 5px;
                   border: 1px solid transparent;
                   border-radius: 3px;
-                  margin-bottom: 10px;
+                  margin-bottom: 5px;
                }
 
                   .edit__title-box:hover{
@@ -246,6 +248,7 @@
                      align-items: center;
                      justify-content: center;
                      padding-bottom: 5px;
+                     outline: unset;
                   }
 
                      .edit__badge-l{
@@ -276,8 +279,8 @@
 
                .edit__description{
                   font-family: Helvetica, Arial, sans-serif;
-                  margin-left: 39px; 
-                  padding: 5px;
+                  margin-left: 37px; 
+                  padding: 5px 10px;
                   border: 1px solid transparent;
                   resize: none;
                   border-radius: 3px;

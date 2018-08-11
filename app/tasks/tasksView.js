@@ -196,9 +196,9 @@ _['app/tasks/tasksView'] = function initTasksView (data) {
       }
    }
 
-   window.test = api
+   api.ele = thisEle
 
-   return { ele: thisEle }
+   return api
 }
 
 
