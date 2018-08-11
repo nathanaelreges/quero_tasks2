@@ -72,16 +72,15 @@
                      border: 1px solid lightgrey;
                      border-radius: 100%;
                      background-color: unset;
-                     height: 1.5rem;
-                     width: 1.5rem;
+                     height: 20px;
+                     width: 20px;
                      margin-right: 10px;
-                     display: flex;
-                     align-items: center;
-                     justify-content: center;
                      padding-bottom: 1.5px;
+                     padding-left: 5px;
                   }
 
                      .task__badge-l {
+                        display: inline-block;
                         color: lightgray;
                         transform: rotateZ(-141deg) rotatex(180deg);
                         font-size: 1rem;

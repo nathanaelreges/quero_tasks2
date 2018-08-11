@@ -1,6 +1,14 @@
 _['app/tasks/tasksView'] = function initTasksView (data) {
    const newEle = _['app/lib'].newEle
-   
+
+   const _data = data.reduce((acc, cur)=>{
+      acc.push(cur)
+      return acc
+   }, [])
+
+   while(_data.length < 12) {
+      _data.push(false)
+   }
 
    const ele = newEle(`<div class="tasks">
       <div class="tasks__l-box">
@@ -11,40 +19,33 @@ _['app/tasks/tasksView'] = function initTasksView (data) {
             </div>
             <div class="tasks__body">
                <ul class="tasks__list">
-                  <div class="tasks__line">
-                     <li class="task">
-                        <button type="button" class="task__badge">
-                           <span class="task__badge-l">L</span>
-                        </button>
-                        <p class="task__text">Work it Harder</p>
-                     </li>
-                  </div>
-                  <div class="tasks__line">
-                     <li class="task">
-                        <button type="button" class="task__badge">
-                           <span class="task__badge-l">L</span>
-                        </button>
-                        <p class="task__text">Make it better</p>
-                     </li>
-                  </div>
-                  <div class="tasks__line">
-                  </div>
-                  <div class="tasks__line">
-                  </div>
-                  <div class="tasks__line">
-                  </div>
-                  <div class="tasks__line">
-                  </div>
-                  <div class="tasks__line">
-                  </div>
-                  <div class="tasks__line">
-                  </div>
+                  ${renderTasks(_data)}
                </ul>
             </div>
          </div>
       </div>
    </div>`)
-   console.log(ele)
+
+   function renderTasks (tasks) {
+      return tasks.reduce((acc, cur)=>{
+         const task = renderTask(cur)
+         return acc + task
+      }, '')
+   }
+
+   function renderTask (task) {
+      return `<div class="tasks__line">
+         ${task?
+            `<li class="task">
+               <button type="button" class="task__badge">
+                  <span class="task__badge-l">L</span>
+               </button>
+               <p class="task__text">${task.title}</p>
+            </li>`:
+            ''
+         }
+      </div>`
+   }
 
    return { ele }
 }
