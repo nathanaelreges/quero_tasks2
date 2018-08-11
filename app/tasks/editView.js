@@ -30,6 +30,10 @@ _['app/tasks/editView'] = function initEditView (data) {
                <textarea type="text" class="edit__description" placeholder="Description" rows="3"></textarea>
             </form>
          </div>
+         <form action="#" class="edit__footer" onsubmit="return false">
+            <div class="edit__user-img edit__user-img--comments"></div>
+            <textarea type="text" name class="edit__comment" placeholder="Write a comment..." rows="4"></textarea>
+         </form>
       </div>
    </div>`)
 
@@ -76,9 +80,6 @@ _['app/tasks/editView'] = function initEditView (data) {
    window.test = api
 
    return { ele: thisEle }
-
-
-
 
 
    function showTask (task = {title: '', description: ''}) {
