@@ -53,19 +53,31 @@
          .tasks__list {
             list-style: none;
             margin: 0;
-            padding: 0px 30px;
+            padding: 0px 0px;
          }
 
-            .tasks__line {
-               border-bottom: 1px solid lightgray;
+            .tasks__row {
                height: 2.7rem;
+               padding: 0px 30px;
             }
 
+               .tasks__row--selected {
+                  background-color: #edf8ff;
+               }
+
+               .tasks__row--selected .task{
+                  border-color: transparent; 
+               }
+
+               .tasks__row--noborder .task{
+                  border-color: transparent; 
+               }
+
                .task {
-                  display: block;
-                  height: 100%;
                   display: flex;
                   align-items: center;
+                  height: 100%;
+                  border-bottom: 1px solid lightgray;
                }
 
                   .task__badge {
@@ -77,6 +89,7 @@
                      margin-right: 10px;
                      padding-bottom: 1.5px;
                      padding-left: 5px;
+                     outline: unset;
                   }
 
                      .task__badge-l {
@@ -90,6 +103,7 @@
 
                   .task__text {
                      margin: 0;
+                     pointer-events: none;
                   }
 
                /**/
@@ -97,9 +111,14 @@
          /**/
       /**/
    /**/
+
+   .tasks__l-aside {
+      overflow: hidden;
+      width: 45%;
+      display: flex;
+   }
    
    .edit{
-      width: 45%;
       padding: 20px 10px 0 10px;
    }
 

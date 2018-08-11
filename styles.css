@@ -16,6 +16,14 @@ body {
 }
 
 
+.transition_t {
+   transition: 100ms ease-in-out transform;
+}
+
+.transition_t-o {
+   transition: 100ms ease-in-out transform, 100ms ease-in-out opacity;
+}
+
 .grid {
    display: flex;
    flex-direction: column;
