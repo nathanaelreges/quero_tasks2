@@ -1,0 +1,101 @@
+.list__box{
+   height: 100%;
+   padding-bottom: 30px;
+   border-radius: 3px 3px 0px 0px;
+   background: white;
+}
+
+   .list__header {
+      height: 50px;
+      border-bottom: 1px solid lightgray;
+      display: flex;
+      align-items: center;
+      padding-left: 30px;
+      padding-right: 20px;
+   }
+      .list__add {
+         outline: none;
+         background: none;
+         border: 1px solid #14aaf5;
+         border-radius: 3px;
+         color: #14aaf5;
+         padding: 7px;
+         font-weight: 600;
+      }
+      
+      .list__config {
+         outline: none;
+         background: none;
+         height: 15px;
+         width: 15px;
+         border: 1px solid lightgray;
+         border-radius: 100%;
+         margin-left: auto;
+      }
+
+   /**/
+
+   .list__body {
+      display: block;
+   }
+   
+   .list__list {
+      list-style: none;
+      margin: 0;
+      padding: 0px 0px;
+   }
+
+      .list__row {
+         height: 2.7rem;
+         padding: 0px 30px;
+      }
+
+         .list__row--selected {
+            background-color: #edf8ff;
+         }
+
+         .list__row--selected .task{
+            border-color: transparent; 
+         }
+
+         .list__row--noborder .task{
+            border-color: transparent; 
+         }
+
+         .task {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            border-bottom: 1px solid lightgray;
+         }
+
+            .task__badge {
+               border: 1px solid lightgrey;
+               border-radius: 100%;
+               background-color: unset;
+               height: 20px;
+               width: 20px;
+               margin-right: 10px;
+               padding-bottom: 1.5px;
+               padding-left: 5px;
+               outline: unset;
+            }
+
+               .task__badge-l {
+                  display: inline-block;
+                  color: lightgray;
+                  transform: rotateZ(-141deg) rotatex(180deg);
+                  font-size: 1rem;
+               }
+
+            /**/
+
+            .task__text {
+               margin: 0;
+               pointer-events: none;
+            }
+
+         /**/
+      /**/
+   /**/
+/**/

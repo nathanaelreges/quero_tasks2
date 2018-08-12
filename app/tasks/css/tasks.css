@@ -1,0 +1,19 @@
+.tasks {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+}
+
+   .tasks__l-box{
+      width: 55%;
+      padding: 15px 7.5px 0 15px;
+   }
+   /**/
+
+   .tasks__l-aside {
+      overflow: hidden;
+      width: 45%;
+      display: flex;
+   }
+   
+/**/

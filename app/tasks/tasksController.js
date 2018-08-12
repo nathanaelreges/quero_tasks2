@@ -1,6 +1,7 @@
 _['app/tasks/tasksController'] = function initTasksController () {
 
    const getTasksView = _['app/tasks/tasksView']
+   const getlistView = _['app/tasks/listView']
    const getEditView = _['app/tasks/editView']
    const model = _['app/model']
 
@@ -10,17 +11,16 @@ _['app/tasks/tasksController'] = function initTasksController () {
 
 
 
-   
-   
+
 
    
-   const tasksView = getTasksView(model.getList())
+   const listView = getlistView(model.getList())
    
-   tasksView.listeners = {
+   listView.listeners = {
       onAdd () {
          selectedIndex = model.newTask()
-         tasksView.addTask(model.getItem(selectedIndex))
-         tasksView.selectTask(selectedIndex)
+         listView.addTask(model.getItem(selectedIndex))
+         listView.selectTask(selectedIndex)
          handleEdit()
       },
       onSelect (id) {
@@ -28,10 +28,16 @@ _['app/tasks/tasksController'] = function initTasksController () {
          if(selectedIndex === index){return}
          selectedIndex = index
 
-         tasksView.selectTask(selectedIndex)
+         listView.selectTask(selectedIndex)
          handleEdit()
       }
    }
+
+
+
+
+
+   const tasksView = getTasksView(listView.ele)
    
 
 
@@ -73,11 +79,11 @@ _['app/tasks/tasksController'] = function initTasksController () {
          },
          onBlurTitle (value) {
             model.updateItem(selectedIndex, {title: value})
-            tasksView.changeTask(selectedIndex, value)
+            listView.changeTask(selectedIndex, value)
          },
          onClose () {
             tasksView.removeAside()
-            tasksView.unselectTask()
+            listView.unselectTask()
             editViewOn = false
             selectedIndex = undefined
          }

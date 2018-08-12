@@ -1,0 +1,212 @@
+.edit{
+   padding: 15px 15px 0 7.5px;
+   width: 100%;
+}
+
+   .edit__box{
+      height: 100%;
+      border-radius: 3px 3px 0px 0px;
+      background: white;
+      display: flex;
+      flex-direction: column;
+   }
+
+      .edit__header {
+         height: 50px;
+         border-bottom: 1px solid lightgray;
+         display: flex;
+         align-items: center;
+         padding-left: 25px;
+      }
+
+         .edit__user-img{
+            border: 1px solid lightgray;
+            background-color: white;
+            height: 30px;
+            width: 30px;
+            border-radius: 100%;
+            margin-right: 10px;
+         }
+         
+         .edit__user-name {
+            color: black;
+            margin-right: 10px;
+         }
+         
+         .edit__user-status{
+            height: 15px;
+            width: 15px;
+            border: 1px solid lightgray;
+            border-radius: 100%;
+            margin-right: 25px;
+         }
+         
+         .edit__date{
+            display: block;
+            outline: none;
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+         }
+         
+            .edit__date-icon{
+               border: 1px solid lightgrey;
+               height: 30px;
+               width: 30px;
+               border-radius: 100%;
+               margin-right: 10px;
+            }
+         
+            .edit__date-text{
+               color: gray;
+               margin-right: 15px;
+            }
+         
+         /**/
+         
+         .edit__button {
+            outline: none;
+            background: none;
+            border: 1px solid lightgrey;
+            height: 30px;
+            width: 30px;
+            border-radius: 100%;
+            margin-right: 10px;
+         }
+
+         .edit__close {
+            outline: none;
+            background: none;
+            border: none;
+            align-self: flex-start;
+            margin: 3px 5px;
+            padding: 0 5px;
+            color: lightgray;
+            font-size: 30px;
+            font-weight: 400;
+            margin-left: auto;
+         }
+
+            .edit__close-text {
+               pointer-events: none;
+               display: inline-block;
+               transform: rotate(45deg);
+            }
+
+         /**/
+      /**/
+      
+      .edit__body {
+         padding: 50px 20px 20px;
+      }
+
+         .edit__form{
+            display: flex;
+            flex-direction: column;
+         }
+      
+            .edit__title-box{
+               display: flex;
+               align-items: center;
+               padding: 3px 5px;
+               border: 1px solid transparent;
+               border-radius: 3px;
+               margin-bottom: 5px;
+            }
+
+               .edit__title-box:hover{
+                  border: 1px solid lightgray;
+               }
+
+               .edit__badge{
+                  background-color: unset;
+                  border: 1px solid lightgrey;
+                  border-radius: 100%;
+                  height: 30px;
+                  width: 30px;
+                  margin-right: 10px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  padding-bottom: 5px;
+                  outline: unset;
+               }
+
+                  .edit__badge-l{
+                     color: lightgray;
+                     transform: rotateZ(-141deg) rotatex(180deg);
+                     font-size: 20px;
+                  }
+
+               /**/
+
+               .edit__title{
+                  font-family: Helvetica, Arial, sans-serif;
+                  border: unset;
+                  font-weight: 600;
+                  font-size: 1.8rem;
+                  outline: none;
+                  flex-grow: 1;
+                  padding: 0;
+               }
+
+                  .edit__title::placeholder {
+                     color: lightgray;
+                  }
+               
+               /**/
+                  
+            /**/
+
+            .edit__description{
+               font-family: Helvetica, Arial, sans-serif;
+               margin-left: 37px; 
+               padding: 5px 10px;
+               border: 1px solid transparent;
+               resize: none;
+               border-radius: 3px;
+            }
+
+               .edit__description:hover{
+                  border: 1px solid lightgray;
+               }
+
+               .edit__description::placeholder {
+                  color: lightgray;
+               }
+            
+            /**/
+         /**/
+      /**/
+
+      .edit__footer {
+         margin-top: auto;
+         padding: 10px 25px 10px 25px;
+         display: flex;
+         align-items: flex-start;
+         background-color: #f6f8f9;
+         border-top: 1px solid lightgray;
+      }
+         .edit__user-img--comments {
+
+         }
+
+         .edit__comment {
+            font-family: Helvetica, Arial, sans-serif; 
+            padding: 15px 10px;
+            border: 1px solid lightgray;
+            resize: none;
+            border-radius: 3px;
+            flex-grow: 1;
+         }
+
+         .edit__comment::placeholder {
+            color: lightgray;
+         }
+
+         
+
+      /**/
+   /**/
+/**/
