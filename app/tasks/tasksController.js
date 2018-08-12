@@ -20,15 +20,15 @@ _['app/tasks/tasksController'] = function initTasksController () {
       onAdd () {
          selectedIndex = model.newTask()
          tasksView.addTask(model.list[selectedIndex])
+         tasksView.selectTask(selectedIndex)
          handleEdit()
       },
       onSelect (id) {
          const index = model.getIndexForId(id)
-         
          if(selectedIndex === index){return}
-         
          selectedIndex = index
 
+         tasksView.selectTask(selectedIndex)
          handleEdit()
       }
    }
@@ -61,6 +61,9 @@ _['app/tasks/tasksController'] = function initTasksController () {
       }
    }
 
+
+
+
    function initEditView () {
       editView = getEditView(model.list[selectedIndex])
       
@@ -70,11 +73,13 @@ _['app/tasks/tasksController'] = function initTasksController () {
          },
          onBlurTitle (value) {
             model.list[selectedIndex].title = value
-            tasksView.changeTask(model.list[selectedIndex].id, value)
+            tasksView.changeTask(selectedIndex, value)
          },
          onClose () {
             tasksView.removeAside()
+            tasksView.unselectTask()
             editViewOn = false
+            selectedIndex = undefined
          }
       }
    }

@@ -3,6 +3,7 @@ _['app/tasks/tasksView'] = function initTasksView (data) {
 
    let numberOfTasks = data.length
    let minNumberOfLines = 12
+   
 
    const _data = data.reduce((acc, cur)=>{
       acc.push(cur)
@@ -13,6 +14,11 @@ _['app/tasks/tasksView'] = function initTasksView (data) {
       _data.push(false)
    }
 
+
+
+   /*
+   * Elements
+   */
    const thisEle = newEle(`<div class="tasks">
       <div class="tasks__l-box">
          <div class="tasks__box">
@@ -22,20 +28,12 @@ _['app/tasks/tasksView'] = function initTasksView (data) {
             </div>
             <div class="tasks__body">
                <ul class="tasks__list">
-                  ${renderTasks(_data)}
                </ul>
             </div>
          </div>
       </div>
       
    </div>`)
-
-   function renderTasks (tasks) {
-      return tasks.reduce((acc, cur)=>{
-         const task = renderRow(cur)
-         return acc + task
-      }, '')
-   }
 
    function renderRow (task) {
       return `<div class="tasks__row">
@@ -48,7 +46,7 @@ _['app/tasks/tasksView'] = function initTasksView (data) {
          <button type="button" class="task__badge">
             <span class="task__badge-l">L</span>
          </button>
-         <p class="task__text">${task.title}</p>
+         <p class="task__text"></p>
       </li>`
    }
 
@@ -58,6 +56,18 @@ _['app/tasks/tasksView'] = function initTasksView (data) {
    const tasksLAside = newEle('<div class="tasks__l-aside"></div>')
    let asideEle = undefined //used by api.showAside() & api.hideAside()
    let selectedRowEle = undefined //used by api.selectTask() & api.unselectTask()
+
+
+   const listOfRows = _data.map(item => {
+      const rowObj = getRowEle(item)
+      taskList.append(rowObj.ele)
+      return rowObj
+   })
+
+
+
+
+
 
    addActions(tasksBox, {
       'tasks_add' () {
@@ -73,29 +83,58 @@ _['app/tasks/tasksView'] = function initTasksView (data) {
 
    api.addTask = (task) => {
       if(numberOfTasks < minNumberOfLines){
-         const taskHtml = renderTask(task)
-         const taskEle = newEle(taskHtml)
-         const taskRowEle = taskList.children[numberOfTasks]
-         taskRowEle.replaceChild(taskEle, taskRowEle.firstElementChild)
+         const newRowObj = getRowEle(task)
+         const oldRowObj = listOfRows[numberOfTasks]
+         taskList.replaceChild(newRowObj.ele, oldRowObj.ele)
+
+         listOfRows[numberOfTasks] = newRowObj
       }
-      else{
-         const lineHtml = renderRow(task)
-         const lineEle = newEle(lineHtml)
-         taskList.append(lineEle)
+      else {
+         const newRowObj = getRowEle(task)
+         taskList.append(newRowObj.ele)
+
+         listOfRows.push(newRowObj)
       }
       numberOfTasks++
    }
 
-   api.removeTask = (id) => {
-      const taskEle = taskList.querySelector(`[data-id="${id}"]`)
-      const tasksRowEle = taskEle.parentElement
+   api.removeTask = (index) => {
+      const rowEle = listOfRows[index].ele
       const newEmptyRowEle = renderRow()
-      taskList.replaceChild(newEmptyRowEle, tasksRowEle)
+      taskList.replaceChild(newEmptyRowEle, rowEle)
+      listOfRows.splice(index, 1)
    }
 
-   api.changeTask = (id, value) => {
-      const taskTextEle = taskList.querySelector(`[data-id="${id}"] .task__text`)
+   api.changeTask = (index, value) => {
+      const taskTextEle = listOfRows[index].text
       taskTextEle.innerText = value
+   }
+
+   api.selectTask = (index) => {
+      if(selectedRowEle){
+         selectedRowEle.classList.remove('tasks__row--selected')
+         const rowEleOnTop = selectedRowEle.previousElementSibling
+         rowEleOnTop && rowEleOnTop.classList.remove('tasks__row--noborder')
+      }
+
+      const rowEle = listOfRows[index].ele
+      rowEle.classList.add('tasks__row--selected')
+      
+      const rowEleOnTop = rowEle.previousElementSibling
+      rowEleOnTop && rowEleOnTop.classList.add('tasks__row--noborder') 
+      
+      selectedRowEle = rowEle 
+   } 
+
+   api.unselectTask = () => {
+      if(selectedRowEle){
+         selectedRowEle.classList.remove('tasks__row--selected')
+      
+         const rowEleOnTop = selectedRowEle.previousElementSibling
+         rowEleOnTop && rowEleOnTop.classList.remove('tasks__row--noborder')
+
+         selectedRowEle = undefined
+      }
    }
    
    api.showAside = async function (ele) {
@@ -167,37 +206,25 @@ _['app/tasks/tasksView'] = function initTasksView (data) {
 
    }
 
-   api.selectTask = (id) => {
-      if(selectedRowEle){
-         selectedRowEle.classList.remove('tasks__row--selected')
-         const tasksRowEleOnTop = selectedRowEle.previousElementSibling
-         tasksRowEleOnTop && tasksRowEleOnTop.classList.remove('tasks__row--noborder')
-      }
 
-      const taskEle = taskList.querySelector(`[data-id="${id}"]`)
-      const tasksRowEle = taskEle.parentElement
-      tasksRowEle.classList.add('tasks__row--selected')
-      
-      const tasksRowEleOnTop = tasksRowEle.previousElementSibling
-      tasksRowEleOnTop && tasksRowEleOnTop.classList.add('tasks__row--noborder') 
-      
-      selectedRowEle = tasksRowEle 
-   } 
-
-   api.unselectTask = () => {
-      if(selectedRowEle){
-         selectedRowEle.classList.remove('tasks__row--selected')
-         selectedRowEle = undefined
-
-         const tasksRowEleOnTop = selectedRowEle.previousElementSibling
-         tasksRowEleOnTop && tasksRowEleOnTop.classList.remove('tasks__row--noborder')
-      }
-   }
 
    api.ele = thisEle
 
    return api
+
+
+   function getRowEle (data) {
+      const rowHtml = renderRow(data)
+      const rowEle = newEle(rowHtml)
+      const obj = {ele: rowEle}
+      
+      if(data){
+         const textEle = rowEle.querySelector('.task__text')
+         textEle.innerText = data.title
+         obj.text = textEle
+      }
+
+      return obj
+   }
+
 }
-
-
-//function () { const elee = document.createElement('div'); elee.style.flexGrow = 1; elee.style.backgroundColor = 'red'; return elee}
