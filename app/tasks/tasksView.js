@@ -2,7 +2,7 @@ _['app/tasks/tasksView'] = function initTasksView (data) {
    const {newEle, addActions, addEventPromise, doubleRAFPromise}  = _['app/lib']
 
    let numberOfTasks = data.length
-   let minNumberOfLines = 4
+   let minNumberOfLines = 12
 
    const _data = data.reduce((acc, cur)=>{
       acc.push(cur)
@@ -61,12 +61,10 @@ _['app/tasks/tasksView'] = function initTasksView (data) {
 
    addActions(tasksBox, {
       'tasks_add' () {
-         //api.listeners.onAdd()
-         console.log('add')
+         api.listeners.onAdd()
       },
       'tasks_select' (d) {
-         //api.listeners.onSelect(d.id)
-         console.log('select' + d.id)
+         api.listeners.onSelect(+d.id)
       }
    })
 

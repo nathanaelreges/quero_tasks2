@@ -44,14 +44,14 @@ _['app/tasks/editView'] = function initEditView (data) {
 
    addActions(thisEle, {
       'edit_close' () {
-         //api.listeners.onClose()
+         api.listeners.onClose()
       }
    })
 
 
    editTitle.addEventListener('blur', ()=>{
-      //api.listeners.onBlurTitle(editTitle.value)
-      console.log(editTitle.value)
+      api.listeners.onBlurTitle(editTitle.value)
+      
    })
 
    editTitle.addEventListener('keyup', (e)=>{
@@ -60,10 +60,8 @@ _['app/tasks/editView'] = function initEditView (data) {
       }
    })
 
-
    editDescription.addEventListener('blur', ()=>{
-      //api.listeners.onBlurTitle(editDescription.value)
-      console.log(editDescription.value)
+      api.listeners.onBlurDescription(editDescription.value)
    })
 
    editDescription.addEventListener('keydown', (e)=>{
@@ -73,17 +71,21 @@ _['app/tasks/editView'] = function initEditView (data) {
       }
    })
 
+
+
    const api = {}
 
    api.showTask = showTask
 
-   window.test = api
+   api.ele = thisEle
 
-   return { ele: thisEle }
+   return api 
 
 
-   function showTask (task = {title: '', description: ''}) {
-      editTitle.value = task.title
-      editDescription.value = task.description
+
+
+   function showTask (task = {}) {
+      editTitle.value = task.title || ''
+      editDescription.value = task.description || ''
    }
 }
