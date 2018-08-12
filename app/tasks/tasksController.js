@@ -14,12 +14,12 @@ _['app/tasks/tasksController'] = function initTasksController () {
    
 
    
-   const tasksView = getTasksView(model.list)
+   const tasksView = getTasksView(model.getList())
    
    tasksView.listeners = {
       onAdd () {
          selectedIndex = model.newTask()
-         tasksView.addTask(model.list[selectedIndex])
+         tasksView.addTask(model.getItem(selectedIndex))
          tasksView.selectTask(selectedIndex)
          handleEdit()
       },
@@ -52,12 +52,12 @@ _['app/tasks/tasksController'] = function initTasksController () {
       }
       else
       if(!editViewOn) {
-         editView.showTask(model.list[selectedIndex])
+         editView.showTask(model.getItem(selectedIndex))
          tasksView.showAside(editView.ele)
          editViewOn = true
       }
       else {
-         editView.showTask(model.list[selectedIndex])
+         editView.showTask(model.getItem(selectedIndex))
       }
    }
 
@@ -65,14 +65,14 @@ _['app/tasks/tasksController'] = function initTasksController () {
 
 
    function initEditView () {
-      editView = getEditView(model.list[selectedIndex])
+      editView = getEditView(model.getItem(selectedIndex))
       
       editView.listeners = {
          onBlurDescription (value) {
-            model.list[selectedIndex].description = value
+            model.updateItem(selectedIndex, {description: value})
          },
          onBlurTitle (value) {
-            model.list[selectedIndex].title = value
+            model.updateItem(selectedIndex, {title: value})
             tasksView.changeTask(selectedIndex, value)
          },
          onClose () {

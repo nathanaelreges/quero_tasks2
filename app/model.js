@@ -1,12 +1,18 @@
 _['app/model'] = function theModel () {
 
-   const list = [
-      {title: 'Work it Harder', id: 0},
-      {title: 'Make it Better', id: 1},
-      {title: 'Do it Faster', id: 2}
-   ]
+   const listJSON = localStorage.getItem('quero_tasks')
+   const savedLastId = localStorage.getItem('quero_tasks-lastid')
+   const list = listJSON? JSON.parse(listJSON) : []
+   let lastId = savedLastId || 0
 
-   let lastId = 2
+
+   window.addEventListener('unload', ()=>{
+      localStorage.setItem('quero_tasks', JSON.stringify(list))
+      localStorage.setItem('quero_tasks-lastid', JSON.stringify(lastId))
+   })
+
+
+
 
 
    const api = {}
@@ -20,6 +26,9 @@ _['app/model'] = function theModel () {
 
       const taskIndex = list.push(task) - 1
       
+      saveList()
+      saveLastId()
+      
       return taskIndex
    }
 
@@ -27,8 +36,42 @@ _['app/model'] = function theModel () {
       list.findIndex(x => x.id===id)
    )
 
-   api.list = list
+   api.getItem = (index) => {
+      return list[index]
+   }
+
+   api.updateItem = (index, {title, description}) => {
+      if(typeof title == 'string') {
+         list[index].title = title
+      }
+
+      if(typeof description == 'string') {
+         list[index].description = description
+      }
+
+      saveList()
+   }
+
+   api.getList = () => {
+      const copyOfList = list.map(x=>x)
+      return copyOfList
+   }
+
+
 
    return api
 
+   function saveList () {
+      localStorage.setItem('quero_tasks', JSON.stringify(list))
+   }
+
+   function saveLastId () {
+      localStorage.setItem('quero_tasks-lastid', JSON.stringify(lastId))
+   }
 }
+
+/*
+window.addEventListener('unload', ()=>{
+   localStorage.clear()
+})
+*/

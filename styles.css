@@ -21,7 +21,7 @@ body {
 }
 
 .transition_t-o {
-   transition: 100ms ease-in-out transform, 100ms ease-in-out opacity;
+   transition: 150ms ease-in-out transform, 150ms ease-in-out opacity;
 }
 
 .grid {
