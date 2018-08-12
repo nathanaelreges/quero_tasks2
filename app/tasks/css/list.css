@@ -13,6 +13,7 @@
       padding-left: 30px;
       padding-right: 20px;
    }
+
       .list__add {
          outline: none;
          background: none;
@@ -46,28 +47,62 @@
    }
 
       .list__row {
-         height: 2.7rem;
-         padding: 0px 30px;
+         display: flex;
+         align-items: center;
+         padding-right: 30px;
       }
 
+         .list__row--empty {
+            padding-left: 30px;
+         }
+         
          .list__row--selected {
+            transform: translateY(-1px);
+            z-index: 1;
+            height: 36px;
+            margin-bottom: -1px;
+            padding: 1px 0 0 0;
             background-color: #edf8ff;
          }
 
-         .list__row--selected .task{
-            border-color: transparent; 
+         .list__drag {
+            width: 30px;
+            align-self: stretch;
+            line-height: 0.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: lightgray;
+            text-align: center;
+            padding: 0;
+            padding-bottom: 9px;
+            visibility: hidden;
+            cursor: move;
+            background-color: unset;
+            border: unset;
          }
 
-         .list__row--noborder .task{
-            border-color: transparent; 
-         }
+            .list__list:not(.dragging) .list__row:hover .list__drag {
+               visibility: unset;
+            }
+
+            /*.dragging .list__drag {
+               visibility: hidden !important;
+            }*/
+
+         /**/
 
          .task {
+            flex-grow: 1;
             display: flex;
             align-items: center;
-            height: 100%;
+            height: 35px;
             border-bottom: 1px solid lightgray;
+            pointer-events: none;
          }
+
+            .list__row--selected .task {
+               border-color: transparent; 
+            }
 
             .task__badge {
                border: 1px solid lightgrey;
@@ -92,10 +127,63 @@
 
             .task__text {
                margin: 0;
-               pointer-events: none;
+            }
+
+            .task__assign {
+               display: none;
+               outline: none;
+               background: none;
+               height: 15px;
+               width: 15px;
+               border: 1px solid lightgray;
+               border-radius: 100%;
+               margin-left: auto;
+            }
+
+               .list__row--selected .task__assign{
+                  display: block;
+               }
+
+            /**/
+         /**/
+
+         .list__arrow {
+            display: none;
+            color: lightgray;
+            width: 30px;
+            padding-left: 6px;
+            font-size: 0.9rem;
+         }
+
+            .list__row--selected .list__arrow {
+               display: inline-block;
             }
 
          /**/
       /**/
    /**/
+/**/
+
+
+
+
+.dragging  .drag-spot:not(.drag-target):hover {
+   border-top: 1px solid greenyellow;
+   padding-top: 0;
+   height: 36px;
+   margin-bottom: -1px;
+   z-index: 1;
+   transform: translateY(-1px);
+}
+
+.dragging .list__row * {
+   /*pointer-events: none;*/
+}
+
+.drag-target .task * {
+   opacity: 0.4;
+}
+
+
+
 /**/

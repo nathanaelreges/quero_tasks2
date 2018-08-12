@@ -57,12 +57,13 @@ _['app/tasks/listView'] = function initListView (data) {
 
 
    const listEle = thisEle.querySelector('.list__list')
-   const listEleChildren = listEle.children
    let selectedRowEle = undefined //used by api.selectTask() & api.unselectTask()
 
-   _data.forEach(item => {
-      const rowEle = getRowEle(item)
-      listEle.append(rowEle)
+
+   const listOfRows = _data.map(item => {
+      const rowObj = getRowEle(item)
+      listEle.append(rowObj.ele)
+      return rowObj
    })
 
 
@@ -78,43 +79,48 @@ _['app/tasks/listView'] = function initListView (data) {
 
    handleDragging ()
 
-   function getFromListEle (index) {
-      listEle.children[index]
-   }
+
 
 
    const api = {}
 
    api.addTask = (task) => {
       if(numberOfTasks < minNumberOfLines){
-         const newRowEle = getRowEle(task)
-         const oldRowEle = listEleChildren[numberOfTasks]
-         listEle.replaceChild(newRowEle, oldRowEle)
+         const newRowObj = getRowEle(task)
+         const oldRowObj = listOfRows[numberOfTasks]
+         listEle.replaceChild(newRowObj.ele, oldRowObj.ele)
+
+         listOfRows[numberOfTasks] = newRowObj
       }
       else {
-         const newRowEle = getRowEle(task)
-         listEle.append(newRowEle)
-      }
+         const newRowObj = getRowEle(task)
+         listEle.append(newRowObj.ele)
 
+         listOfRows.push(newRowObj)
+      }
       numberOfTasks++
    }
 
    api.reOrder = (fromIndex, toIndex) => { console.log(fromIndex, toIndex)
-      const rowEle = listEleChildren[fromIndex]
-      const targetRowEle = listEleChildren[toIndex]
+      const rowEle = listOfRows[fromIndex].ele
+      const targetRowEle = listOfRows[toIndex].ele
       listEle.insertBefore(rowEle, targetRowEle)
+      
+      const item = listOfRows.splice(fromIndex, 1)[0]
+      fromIndex<toIndex && --toIndex
+      listOfRows.splice(toIndex, 0, item)
    }
 
 
    api.removeTask = (index) => {
-      const rowEle = listEleChildren[index]
+      const rowEle = listOfRows[index].ele
       const newEmptyRowEle = renderRow()
       listEle.replaceChild(newEmptyRowEle, rowEle)
+      listOfRows.splice(index, 1)
    }
 
    api.changeTask = (index, value) => {
-      const rowEle = listEleChildren[index]
-      const taskTextEle = rowEle.querySelector('.task__text')
+      const taskTextEle = listOfRows[index].text
       taskTextEle.innerText = value
    }
 
@@ -123,7 +129,7 @@ _['app/tasks/listView'] = function initListView (data) {
          selectedRowEle.classList.remove('list__row--selected')
       }
 
-      const rowEle = listEleChildren[index]
+      const rowEle = listOfRows[index].ele
       rowEle.classList.add('list__row--selected')
       
       selectedRowEle = rowEle 
@@ -146,15 +152,16 @@ _['app/tasks/listView'] = function initListView (data) {
    function getRowEle (data) {
       const rowHtml = renderRow(data)
       const rowEle = newEle(rowHtml)
-   
+      const obj = {ele: rowEle}
+      
       if(data){
          const textEle = rowEle.querySelector('.task__text')
          textEle.innerText = data.title
+         obj.text = textEle
       }
 
-      return rowEle
+      return obj
    }
-
 
 
    function handleDragging () {

@@ -17,7 +17,7 @@ _['app/lib'] = (function initLib () {
                   throw('addActions - No action registered for this key: ' + d.act)
                }
                
-               actions[d.act](d,t)
+               actions[d.act](d,t,e)
             }
                  
          })

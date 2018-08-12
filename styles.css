@@ -15,6 +15,10 @@ body {
    box-sizing: border-box;
 }
 
+button {
+   user-select: none;
+}
+
 
 .transition_t {
    transition: 100ms ease-in-out transform;

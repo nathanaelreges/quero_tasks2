@@ -30,6 +30,13 @@ _['app/tasks/tasksController'] = function initTasksController () {
 
          listView.selectTask(selectedIndex)
          handleEdit()
+      },
+      onDrag (from, to) {
+         const fromIndex = model.getIndexForId(from)
+         const toIndex = model.getIndexForId(to)
+
+         model.changeIndex(fromIndex, toIndex)
+         listView.reOrder(fromIndex, toIndex)
       }
    }
 
