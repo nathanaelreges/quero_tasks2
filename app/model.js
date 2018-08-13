@@ -21,6 +21,7 @@ _['app/model'] = function theModel () {
       const task = {
          title: '',
          description: '',
+         status: false,
          id: ++lastId
       }
 
@@ -49,6 +50,12 @@ _['app/model'] = function theModel () {
          list[index].description = description
       }
 
+      saveList()
+   }
+
+   api.toggleStatus = (index) => {
+      list[index].status = !list[index].status
+      
       saveList()
    }
 

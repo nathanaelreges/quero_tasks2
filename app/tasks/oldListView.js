@@ -101,7 +101,7 @@ _['app/tasks/listView'] = function initListView (data) {
       numberOfTasks++
    }
 
-   api.reOrder = (fromIndex, toIndex) => { console.log(fromIndex, toIndex)
+   api.reOrder = (fromIndex, toIndex) => {
       const rowEle = listOfRows[fromIndex].ele
       const targetRowEle = listOfRows[toIndex].ele
       listEle.insertBefore(rowEle, targetRowEle)

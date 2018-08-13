@@ -35,7 +35,7 @@ _['app/tasks/listView'] = function initListView (data) {
       if(task){
          return `<div class="list__row drag-spot" data-act="list_select" data-id="${task.id}">
             <button rel="button" class="list__drag" data-id="${task.id}">...<br/>...</button>
-            ${renderTask()}
+            ${renderTask(task)}
             <span class="list__arrow">></span>
          </div>`
       }
@@ -48,9 +48,10 @@ _['app/tasks/listView'] = function initListView (data) {
 
    const markIconHtml = getIconHtml('mark')
 
-   function renderTask () {
+   function renderTask (task) {
       return `<li class="task" >
-         <button type="button" class="task__badge">
+         <button type="button" class="task__badge ${task.status? 'task__badge--done': ''}"
+            data-act="list_mark" data-id="${task.id}">
             ${markIconHtml}
          </button>
          <p class="task__text"></p>
@@ -78,6 +79,9 @@ _['app/tasks/listView'] = function initListView (data) {
       },
       'list_select' (d) {
          api.listeners.onSelect(+d.id)
+      },
+      'list_mark' (d) {
+         api.listeners.onMark(+d.id)
       } 
    })
 
@@ -103,7 +107,7 @@ _['app/tasks/listView'] = function initListView (data) {
       listEleChildren[numberOfTasks].classList.add('drag-spot')
    }
 
-   api.reOrder = (fromIndex, toIndex) => { console.log(fromIndex, toIndex)
+   api.reOrder = (fromIndex, toIndex) => {
       const rowEle = listEleChildren[fromIndex]
       const targetRowEle = listEleChildren[toIndex]
       listEle.insertBefore(rowEle, targetRowEle)
@@ -116,10 +120,23 @@ _['app/tasks/listView'] = function initListView (data) {
       listEle.replaceChild(newEmptyRowEle, rowEle)
    }
 
-   api.changeTask = (index, value) => {
-      const rowEle = listEleChildren[index]
-      const taskTextEle = rowEle.querySelector('.task__text')
-      taskTextEle.innerText = value
+   api.changeTask = (index, what, value) => {
+      if(what == 'text') {
+         const rowEle = listEleChildren[index]
+         const taskTextEle = rowEle.querySelector('.task__text')
+         taskTextEle.innerText = value
+      }
+      else 
+      if(what == 'status') {
+         const rowEle = listEleChildren[index]
+         const badgeEle = rowEle.querySelector('.task__badge')
+         if(value){
+            badgeEle.classList.add('task__badge--done')
+         }
+         else {
+            badgeEle.classList.remove('task__badge--done')
+         }
+      }
    }
 
    api.selectTask = (index) => {
@@ -199,7 +216,6 @@ _['app/tasks/listView'] = function initListView (data) {
             if(hoverdId === originId){return}
             hoverdId = hoverdId? +hoverdId : 'end'
    
-            console.log(originId, hoverdId)
             api.listeners.onDrag(+originId, hoverdId)
             
          }

@@ -1,5 +1,5 @@
 _['app/tasks/editView'] = function initEditView (data) {
-   const {newEle, addActions, addEventPromise, doubleRAFPromise}  = _['app/lib']
+   const {newEle, addActions}  = _['app/lib']
    const getIconHtml  = _['app/lib/icons']
 
 
@@ -26,7 +26,7 @@ _['app/tasks/editView'] = function initEditView (data) {
          <div class="edit__body">
             <form action="#" class="edit__form" onsubmit="return false">
                <div class="edit__title-box">
-                  <button type="button" class="edit__badge">
+                  <button type="button" class="edit__badge" data-act="edit_mark">
                      ${markIconHtml}
                   </button>
                   <input type="text" name class="edit__title" placeholder="New Task" />
@@ -43,12 +43,16 @@ _['app/tasks/editView'] = function initEditView (data) {
 
    const editTitle = thisEle.querySelector('.edit__title')
    const editDescription = thisEle.querySelector('.edit__description')
+   const editBadge = thisEle.querySelector('.edit__badge')
    
    showTask(data)
 
    addActions(thisEle, {
       'edit_close' () {
          api.listeners.onClose()
+      },
+      'edit_mark' () {
+         api.listeners.onMark()
       }
    })
 
@@ -91,5 +95,6 @@ _['app/tasks/editView'] = function initEditView (data) {
    function showTask (task = {}) {
       editTitle.value = task.title || ''
       editDescription.value = task.description || ''
+      editBadge.className = 'edit__badge' + (task.status? ' edit__badge--done': '')
    }
 }

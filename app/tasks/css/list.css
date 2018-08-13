@@ -115,11 +115,21 @@
                margin-right: 10px;
                padding: 3px;
                outline: unset;
+               pointer-events: all;
             }
 
+               .task__badge--done {
+                  border-color: lightseagreen;
+               }
                .task__badge svg {
+                  pointer-events: none;
                   stroke: lightgray;
                }
+
+               .task__badge--done svg {
+                  stroke: lightseagreen;
+               }
+
 
             /**/
 

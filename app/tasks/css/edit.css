@@ -129,8 +129,17 @@
                   outline: unset;
                }
 
+                  .edit__badge--done {
+                     border-color: lightseagreen;
+                  }
+
                   .edit__badge svg {
+                     pointer-events: none;
                      stroke: lightgray;
+                  }
+                  
+                  .edit__badge--done svg {
+                     stroke: lightseagreen;
                   }
 
                /**/
