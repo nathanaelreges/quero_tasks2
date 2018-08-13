@@ -24,7 +24,7 @@ _['app/tasks/tasksView'] = function initTasksView (mainEle) {
 
    api.showAside = async function (ele) {
       asideEle = ele
-      const distanceFromLeft = LBoxEle.getBoundingClientRect().x
+      const distanceFromLeft = LBoxEle.offsetLeft
 
       LBoxEle.classList.add('transition_t')
       LBoxEle.style.willChange = `transform`
@@ -62,7 +62,7 @@ _['app/tasks/tasksView'] = function initTasksView (mainEle) {
 
 
    api.removeAside = async function () {
-      const fullWidth = thisEle.getBoundingClientRect().width
+      const fullWidth = thisEle.offsetWidth
       const distanceToMiddle = (fullWidth * 0.45) / 2
 
       asideEle.classList.add('transition_t-o')

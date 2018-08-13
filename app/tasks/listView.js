@@ -164,30 +164,41 @@ _['app/tasks/listView'] = function initListView (data) {
          if(e.target.className != 'list__drag'){return}
       
          const rowEle = e.target.parentElement
+         let hoverdEle = undefined   
          const originId = e.target.dataset.id
-         
+
+
          rowEle.classList.add('drag-target')
          listEle.classList.add('dragging')
          document.body.classList.add('drag-block-cursor')
    
-         //e.preventDefault()
+         e.preventDefault()
    
+         
+         
+
+         handleEventListener(listEle, 'add', ['mouseover'], handleHover)
          handleEventListener(window, 'add', ['mouseup', 'blur'], end)
+
    
          function end (e)  {
             listEle.classList.remove('dragging')   
             document.body.classList.remove('drag-block-cursor')
             rowEle.classList.remove('drag-target')
+            
+            handleEventListener(listEle, 'remove', ['mouseover'], handleHover)
             handleEventListener(window, 'remove', ['mouseup', 'blur'], end)
             
-            if(!e.target.classList.contains('drag-spot')){return}
+            if(!hoverdEle){return}
 
-            let targetId = e.target.dataset.id 
-            if(targetId === originId){return}
-            targetId = targetId? +targetId : 'end'
+            hoverdEle.classList.remove('drag-hover')
+
+            let hoverdId = hoverdEle.dataset.id 
+            if(hoverdId === originId){return}
+            hoverdId = hoverdId? +hoverdId : 'end'
    
-            console.log(originId, targetId)
-            api.listeners.onDrag(+originId, targetId)
+            console.log(originId, hoverdId)
+            api.listeners.onDrag(+originId, hoverdId)
             
          }
    
@@ -196,6 +207,24 @@ _['app/tasks/listView'] = function initListView (data) {
                target[type + 'EventListener'](event, callback)      
             })
          }
+
+         function handleHover (e) {
+            if(!e.target.classList.contains('drag-spot')){return}
+            if(e.target.classList.contains('drag-target')){
+               
+               hoverdEle && hoverdEle.classList.remove('drag-hover')
+               hoverdEle = undefined
+               return
+            }
+
+            e.target.classList.add('drag-hover')
+            hoverdEle && hoverdEle.classList.remove('drag-hover')
+            hoverdEle = e.target
+         }
+         
+
+
+
       })
    }
 
