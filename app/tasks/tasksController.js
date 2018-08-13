@@ -93,8 +93,11 @@ _['app/tasks/tasksController'] = function initTasksController () {
    function handleMark (id) {
       const index = id? model.getIndexForId(id): selectedIndex
       model.toggleStatus(index)
+      
       const updatedItem = model.getItem(index)
+      
       listView.changeTask(index, 'status', updatedItem.status)
+      
       if(selectedIndex == index) {
          editView.showTask(updatedItem)
       }
