@@ -68,7 +68,6 @@ _['app/tasks/listView'] = function initListView (data) {
       listEle.append(rowEle)
    })
 
-   console.log(numberOfTasks)
    listEleChildren[numberOfTasks].classList.add('drag-spot')
 
 

@@ -189,8 +189,7 @@ _['app/tasks/listView'] = function initListView (data) {
             if(!e.target.classList.contains('drag-spot')){return}
    
             const targetId = e.target.dataset.id
-   
-            console.log(dragedId, targetId)
+
             api.listeners.onDrag(+dragedId, +targetId)
             
          }

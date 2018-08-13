@@ -47,7 +47,6 @@ _['app/tasks/tasksController'] = function initTasksController () {
 
          if(selectedIndex != undefined) {
             selectedIndex = model.getIndexForId(selectedId)
-            console.log('index' + selectedIndex)
          }
       }
    }
