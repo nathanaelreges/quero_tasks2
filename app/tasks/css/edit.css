@@ -119,24 +119,18 @@
                   border: 1px solid lightgray;
                }
 
-               .edit__badge{
+               .edit__badge {
                   background-color: unset;
                   border: 1px solid lightgrey;
                   border-radius: 100%;
                   height: 30px;
                   width: 30px;
                   margin-right: 10px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  padding-bottom: 5px;
                   outline: unset;
                }
 
-                  .edit__badge-l{
-                     color: lightgray;
-                     transform: rotateZ(-141deg) rotatex(180deg);
-                     font-size: 20px;
+                  .edit__badge svg {
+                     stroke: lightgray;
                   }
 
                /**/

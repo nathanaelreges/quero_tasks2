@@ -20,6 +20,9 @@ button {
    cursor: pointer;
 }
 
+.js-template {
+   display: none;
+}
 
 .transition_t {
    transition: 100ms ease-in-out transform;
@@ -58,12 +61,17 @@ button {
          align-items: center;
          justify-content: center;
       }
+
          .header__menu-link {
-            background-color: grey;
             display: inline-block;
             width: 20px;
             height: 20px;
          }
+
+         .header__menu-icon {
+            stroke: grey;
+         }
+
       /**/
 
       .header__mytasks {
@@ -79,11 +87,13 @@ button {
       }
 
       .header__plus {
-         background-color: orange;
+         background-image: linear-gradient( 80deg, red 0%, orange 72%);
          height: 25px;
          width: 25px;
          border-radius: 100%;
+         padding: 5px
       }
+
    /**/
    
    .header__middle {
@@ -97,20 +107,28 @@ button {
       .header__form{
          border: 1px solid lightgray;
          border-radius: 20px;
-         padding: 0px 10px 0px 10px;
+         padding: 3px;
+         padding-left: 9px;
+         margin: 0px 10px 0px 10px;
          height: 35px;
          display: flex;
          align-items: center;
       }
 
-         .header__lens-icon{
+         .header__lens{
             display: inline-block;
             width: 20px;
             height: 20px;
-            background-color: lightgray;
             margin-right: 10px;
-            border-radius: 100%
+            border-radius: 100%;
+
          }
+            .header__lens-icon path{
+               fill: gray;
+            }
+
+         /**/
+
 
          .header__input{
             outline: none;
@@ -136,11 +154,14 @@ button {
          margin-right: 35px;
          text-decoration: none;
          color: gray;
+         display: flex;
+         align-items: center;
       }
 
-         .header__arrow {
-            transform: rotate(90deg);
-            display: inline-block;
+         .header__help-arrow {
+            stroke: gray;
+            height: 10px;
+            margin-left: 3px;
          }
 
       /**/
@@ -154,7 +175,6 @@ button {
 
       .header__user-img {
          border: 1px solid gray;
-         background-color: white;
          height: 30px;
          width: 30px;
          border-radius: 100%;
@@ -192,25 +212,37 @@ button {
 
          .main__title {
             margin: 0;
-            margin-right: 10px;
+            margin-right: 5px;
          }
 
          .main__arrow{
-            transform: rotate(90deg);
-            display: inline-block;
+            margin-top: 8px;
+            align-self: flex-start;
+            stroke: grey;
+            height: 10px;
          }
 
       /**/
 
       .main__row-2{
-         padding: 0 0 5px 10px;
+         padding: 3px;
+         outline: none;
+         background: none;
+         border: none;
+         margin: 0 0 5px 10px;
+         display: flex;
+         flex-direction: column;
+         align-items: flex-start;
       }
 
-      .main__double-arrow {
-         transform: rotate(-90deg);
-         display: inline-block;
-         font-size: 0.5rem;
-      }
+         .main__double-arrow {
+            transform: rotate(180deg);
+            stroke: grey;
+            height: 6px;
+            margin-bottom: -2px;
+         }
+      
+      /**/
 
    /**/
 

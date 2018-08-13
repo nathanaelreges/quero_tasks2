@@ -16,7 +16,9 @@
       <header class="header">
          <div class="header__left">
             <div href="#" class="header__menu">
-               <a href="#" class="header__menu-link"></a>
+               <a href="#" class="header__menu-link">
+                  <span class="js-icon header__menu-icon" data-id="menu"></span>
+               </a>
             </div>
             <a href="#" class="header__mytasks">
                My Tasks
@@ -24,18 +26,22 @@
             <a href="#" class="header__inbox">
                <span>Inbox</span>
             </a>
-            <a href="#" class="header__plus"></a>
+            <a href="#" class="header__plus">
+               <span class="js-icon" data-id="plus"></span>
+            </a>
          </div>
          <div class="header__middle">
             <form class="header__form" action="#" method="GET" onsubmit="return false" role="search">
-               <div class="header__lens-icon"></div>
+               <div class="header__lens">
+                  <span class="js-icon header__lens-icon" data-id="lens"></span>
+               </div>
                <input class="header__input" type="text" placeholder="Search"/>
             </form>
          </div>
          <div class="header__right">
             <a href="#" class="header__help">
                Help
-               <span class="header__arrow">></span>
+               <span class="js-icon header__help-arrow" data-id="arrow"></span>
             </a>
             <a href="#" class="header__projects">
                Personal Projects
@@ -48,104 +54,82 @@
          <div class="main__row">
             <div class="main__user-img"></div>
             <h1 class="main__title">My Personal Tasks</h1>
-            <span class="main__arrow">></span>
+            <span class="js-icon main__arrow" data-id="arrow"></span>
          </div> 
-         <div class="main__row-2">
-            <span class="main__double-arrow">>></span>
-         </div>
+         <button type="button" class="main__row-2">
+            <span class="js-icon main__double-arrow" data-id="arrow"></span>
+            <span class="js-icon main__double-arrow" data-id="arrow"></span>
+         </button>
          </div>
          <div class="main__body">
-            <!--
-            <div class="tasks">
-               <div class="tasks__l-box">
-                  <div class="tasks__box">
-                     <div class="tasks__header">
-                        <button type="button" class="tasks__add">Add Task</button>
-                        <button type="button" class="tasks__config"></button>
-                     </div>
-                     <div class="tasks__body">
-                        <ul class="tasks__list">
-                           <div class="tasks__line">
-                              <li class="task">
-                                 <button type="button" class="task__badge">
-                                    <span class="task__badge-l">L</span>
-                                 </button>
-                                 <p class="task__text">Work it Harder</p>
-                              </li>
-                           </div>
-                           <div class="tasks__line">
-                              <li class="task">
-                                 <button type="button" class="task__badge">
-                                    <span class="task__badge-l">L</span>
-                                 </button>
-                                 <p class="task__text">Make it better</p>
-                              </li>
-                           </div>
-                           <div class="tasks__line">
-                           </div>
-                           <div class="tasks__line">
-                           </div>
-                           <div class="tasks__line">
-                           </div>
-                           <div class="tasks__line">
-                           </div>
-                           <div class="tasks__line">
-                           </div>
-                           <div class="tasks__line">
-                           </div>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-               <div class="edit">
-                  <div class="edit__box">
-                     <div class="edit__header">
-                        <div class="edit__user-img"></div>
-                        <div class="edit__user-name">Roger Garcia</div>
-                        <div class="edit__user-status"></div>
-                        <button class="edit__date">
-                           <div class="edit__date-icon"></div>
-                           <div class="edit__date-text">Due Date</div>
-                        </button>
-                        <button class="edit__button"></button>
-                        <button class="edit__button"></button>
-                        <button class="edit__button"></button>
-                        <button class="edit__button"></button>
-                        <button class="edit__close">
-                           <span class="edit__close-text">+</span>
-                        </button>
-                     </div>
-                     <div class="edit__body">
-                        <form action="#" class="edit__form">
-                           <div class="edit__title-box">
-                              <button class="edit__badge">
-                                 <span class="edit__badge-l">L</span>
-                              </button>
-                              <input type="text" class="edit__title" placeholder="New Task" />
-                           </div>
-                           <textarea type="text" class="edit__description"
-                              placeholder="Description" rows="3"
-                           ></textarea>
-                        </form>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            -->
          </div>
       </main>
-      <script>
-         _ = {}
-      </script>
-      <script src="app/model.js"></script>
-      <script src="app/app.js"></script>
-      <script src="app/tasks/tasksView.js"></script>
-      <script src="app/tasks/listView.js"></script>
-      <script src="app/tasks/editView.js"></script>
-      <script src="app/tasks/tasksController.js"></script>
-      <script src="app/tasks/tasks.js"></script>
-      <script src="app/lib/lib.js"></script>
-      <script src="main.js"></script>
-   </div>
+    </div>
+
+
+    
+    <!--ICONS-->
+    <svg class="js-template" data-id="arrow" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+       version="1.1" viewBox="0.0 0.0 250.0 250.0" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10">
+       <g>
+          <path stroke="unset" stroke-width="34.0" stroke-linejoin="round" stroke-linecap="butt"
+             d="m237.17455 67.26206l-112.4059 115.47808l-111.9441 -115.00609" fill-rule="evenodd"/>
+       </g>
+    </svg>
+
+    <svg class="js-template" data-id="lens" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 512 512" xml:space="preserve">
+       <g>
+           <path fill="#ffffff" d="M384,192C384,85.969,298.031,0,192,0S0,85.969,0,192s85.969,192,192,192S384,298.031,384,192z M192,336
+               c-79.406,0-144-64.594-144-144S112.594,48,192,48s144,64.594,144,144S271.406,336,192,336z"/>
+           <path fill="#ffffff" d="M497.938,430.063L380.469,312.594c-17.5,27.219-40.656,50.375-67.875,67.875l117.469,117.469
+               c18.75,18.75,49.156,18.75,67.875,0C516.688,479.219,516.688,448.813,497.938,430.063z"/>
+       </g>
+   </svg>
+
+   <svg class="js-template" data-id="plus" version="1.1" viewBox="0.0 0.0 500.0 500.0" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10"
+       xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+       <g >
+          <path stroke="#ffffff" fill="#ffffff" stroke-width="9.0" stroke-linejoin="round" stroke-linecap="butt" d="m16.88046 208.48038l191.59991 0l0 -187.57243l83.039246 0l0 187.57243l191.59991 0l0 83.039246l-191.59991 0l0 187.57242l-83.039246 0l0 -187.57242l-191.59991 0z"
+             fill-rule="evenodd" />
+       </g>
+    </svg>
+
+    <svg class="js-template" data-id="mark" version="1.1" viewBox="0.0 0.0 500.0 500.0" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10"
+       xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+       <g >
+       <path stroke="unset" stroke-width="55.0" stroke-linejoin="round" stroke-linecap="butt" d="m48.010498 225.77827l83.177124 196.03508l336.56348 -317.56116"
+          fill-rule="evenodd"></path>
+       </g>
+    </svg>
+
+    <svg class="js-template" data-id="menu" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.0 0.0 500.0 500.0"
+       fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10">
+       <g>
+          <path stroke="unset" stroke-width="44.0" stroke-linejoin="round" stroke-linecap="butt" d="m55.43307 106.08399l0 0c0 -0.32180786 0.2608719 -0.58267975 0.58267593 -0.58267975l387.9685 0c0.15454102 0 0.30273438 0.06138611 0.41201782 0.17066193c0.10928345 0.10927582 0.1706543 0.2574768 0.1706543 0.41201782l0 0l0 0c0 0.32180023 -0.26086426 0.5826721 -0.5826721 0.5826721l-387.9685 0c-0.32180405 0 -0.58267593 -0.2608719 -0.58267593 -0.5826721z"
+             fill-rule="evenodd" />
+          <path stroke="unset" stroke-width="44.0" stroke-linejoin="round" stroke-linecap="butt" d="m50.38845 250.0l0 0c0 -0.32180786 0.2608757 -0.5826721 0.58267975 -0.5826721l387.9685 0c0.15454102 0 0.30273438 0.06138611 0.41201782 0.1706543c0.10925293 0.10928345 0.1706543 0.2574768 0.1706543 0.41201782l0 0l0 0c0 0.32180786 -0.26086426 0.5826721 -0.5826721 0.5826721l-387.9685 0c-0.32180405 0 -0.58267975 -0.26086426 -0.58267975 -0.5826721z"
+             fill-rule="evenodd" />
+          <path stroke="unset" stroke-width="44.0" stroke-linejoin="round" stroke-linecap="butt" d="m55.43307 393.91602l0 0c0 -0.32180786 0.2608719 -0.5826721 0.58267593 -0.5826721l387.9685 0c0.15454102 0 0.30273438 0.06137085 0.41201782 0.1706543c0.10928345 0.10928345 0.1706543 0.2574768 0.1706543 0.41201782l0 0l0 0c0 0.32180786 -0.26086426 0.5826721 -0.5826721 0.5826721l-387.9685 0c-0.32180405 0 -0.58267593 -0.26086426 -0.58267593 -0.5826721z"
+             fill-rule="evenodd" />
+       </g>
+    </svg>
+   <!--ICONS-->
+
+
+
+    <script>
+       _ = {}
+    </script>
+    <script src="app/model.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/tasks/tasksView.js"></script>
+    <script src="app/tasks/listView.js"></script>
+    <script src="app/tasks/editView.js"></script>
+    <script src="app/tasks/tasksController.js"></script>
+    <script src="app/tasks/tasks.js"></script>
+    <script src="app/lib/lib.js"></script>
+    <script src="app/lib/icons.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
+

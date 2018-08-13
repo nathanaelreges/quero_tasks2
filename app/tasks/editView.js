@@ -1,5 +1,9 @@
 _['app/tasks/editView'] = function initEditView (data) {
    const {newEle, addActions, addEventPromise, doubleRAFPromise}  = _['app/lib']
+   const getIconHtml  = _['app/lib/icons']
+
+
+   const markIconHtml = getIconHtml('mark')
 
    const thisEle = newEle(`<div class="edit">
       <div class="edit__box">
@@ -23,7 +27,7 @@ _['app/tasks/editView'] = function initEditView (data) {
             <form action="#" class="edit__form" onsubmit="return false">
                <div class="edit__title-box">
                   <button type="button" class="edit__badge">
-                     <span class="edit__badge-l">L</span>
+                     ${markIconHtml}
                   </button>
                   <input type="text" name class="edit__title" placeholder="New Task" />
                </div>

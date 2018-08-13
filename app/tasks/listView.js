@@ -1,5 +1,6 @@
 _['app/tasks/listView'] = function initListView (data) {
-   const {newEle, addActions}  = _['app/lib']
+   const { newEle, addActions }  = _['app/lib']
+   const getIconHtml  = _['app/lib/icons']
 
    let numberOfTasks = data.length
    let minNumberOfLines = 12
@@ -45,10 +46,12 @@ _['app/tasks/listView'] = function initListView (data) {
       }
    }
 
+   const markIconHtml = getIconHtml('mark')
+
    function renderTask () {
       return `<li class="task" >
          <button type="button" class="task__badge">
-            <span class="task__badge-l">L</span>
+            ${markIconHtml}
          </button>
          <p class="task__text"></p>
          <button type="button" class="task__assign"></button>
