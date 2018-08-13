@@ -33,10 +33,22 @@ _['app/tasks/tasksController'] = function initTasksController () {
       },
       onDrag (from, to) {
          const fromIndex = model.getIndexForId(from)
-         const toIndex = model.getIndexForId(to)
+         const toIndex = to == 'end'? 
+            model.getListLength():
+            model.getIndexForId(to)
+         //
+
+         if(selectedIndex != undefined) {
+            var selectedId = model.getItem(selectedIndex).id
+         }
 
          model.changeIndex(fromIndex, toIndex)
          listView.reOrder(fromIndex, toIndex)
+
+         if(selectedIndex != undefined) {
+            selectedIndex = model.getIndexForId(selectedId)
+            console.log('index' + selectedIndex)
+         }
       }
    }
 

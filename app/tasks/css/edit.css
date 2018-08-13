@@ -166,6 +166,7 @@
                border: 1px solid transparent;
                resize: none;
                border-radius: 3px;
+               outline: none;
             }
 
                .edit__description:hover{
@@ -189,7 +190,7 @@
          border-top: 1px solid lightgray;
       }
          .edit__user-img--comments {
-
+            display: initial;
          }
 
          .edit__comment {

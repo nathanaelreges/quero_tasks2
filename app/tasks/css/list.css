@@ -50,10 +50,12 @@
          display: flex;
          align-items: center;
          padding-right: 30px;
+         cursor: pointer;
       }
 
          .list__row--empty {
             padding-left: 30px;
+            cursor: initial;
          }
          
          .list__row--selected {
@@ -176,8 +178,9 @@
    transform: translateY(-1px);
 }
 
-.dragging .list__row * {
-   /*pointer-events: none;*/
+
+.dragging .list__row {
+   cursor: initial;
 }
 
 .drag-target .task * {

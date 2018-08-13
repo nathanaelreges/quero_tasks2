@@ -69,6 +69,10 @@ _['app/model'] = function theModel () {
       return copyOfList
    }
 
+   api.getListLength = () => {
+      return list.length
+   }
+
 
 
    return api

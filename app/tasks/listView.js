@@ -10,9 +10,9 @@ _['app/tasks/listView'] = function initListView (data) {
       return acc
    }, [])
 
-   while(_data.length < minNumberOfLines) {
+   do{
       _data.push(false)
-   }
+   } while(_data.length < minNumberOfLines) 
 
 
 
@@ -39,9 +39,9 @@ _['app/tasks/listView'] = function initListView (data) {
          </div>`
       }
       else {
-         return `<div class="list__row list__row--empty">
+         return `<span class="list__row list__row--empty">
             <div class="task"></div>
-         </div>`
+         </span>`
       }
    }
 
@@ -65,6 +65,9 @@ _['app/tasks/listView'] = function initListView (data) {
       listEle.append(rowEle)
    })
 
+   console.log(numberOfTasks)
+   listEleChildren[numberOfTasks].classList.add('drag-spot')
+
 
 
    addActions(thisEle, {
@@ -78,25 +81,24 @@ _['app/tasks/listView'] = function initListView (data) {
 
    handleDragging ()
 
-   function getFromListEle (index) {
-      listEle.children[index]
-   }
-
 
    const api = {}
 
    api.addTask = (task) => {
-      if(numberOfTasks < minNumberOfLines){
+      if(numberOfTasks < minNumberOfLines - 1){
          const newRowEle = getRowEle(task)
          const oldRowEle = listEleChildren[numberOfTasks]
          listEle.replaceChild(newRowEle, oldRowEle)
       }
       else {
          const newRowEle = getRowEle(task)
-         listEle.append(newRowEle)
+         const lastRowEle = listEleChildren[numberOfTasks]
+         listEle.insertBefore(newRowEle, lastRowEle)
       }
 
       numberOfTasks++
+
+      listEleChildren[numberOfTasks].classList.add('drag-spot')
    }
 
    api.reOrder = (fromIndex, toIndex) => { console.log(fromIndex, toIndex)
@@ -162,16 +164,15 @@ _['app/tasks/listView'] = function initListView (data) {
          if(e.target.className != 'list__drag'){return}
       
          const rowEle = e.target.parentElement
-         const dragedId = e.target.dataset.id
+         const originId = e.target.dataset.id
          
          rowEle.classList.add('drag-target')
          listEle.classList.add('dragging')
          document.body.classList.add('drag-block-cursor')
    
-         e.preventDefault()
+         //e.preventDefault()
    
          handleEventListener(window, 'add', ['mouseup', 'blur'], end)
-   
    
          function end (e)  {
             listEle.classList.remove('dragging')   
@@ -180,11 +181,13 @@ _['app/tasks/listView'] = function initListView (data) {
             handleEventListener(window, 'remove', ['mouseup', 'blur'], end)
             
             if(!e.target.classList.contains('drag-spot')){return}
+
+            let targetId = e.target.dataset.id 
+            if(targetId === originId){return}
+            targetId = targetId? +targetId : 'end'
    
-            const targetId = e.target.dataset.id
-   
-            console.log(dragedId, targetId)
-            api.listeners.onDrag(+dragedId, +targetId)
+            console.log(originId, targetId)
+            api.listeners.onDrag(+originId, targetId)
             
          }
    
@@ -195,5 +198,6 @@ _['app/tasks/listView'] = function initListView (data) {
          }
       })
    }
+
 
 }
