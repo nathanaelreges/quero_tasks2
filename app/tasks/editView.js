@@ -41,9 +41,10 @@ _['app/tasks/editView'] = function initEditView (data) {
       </div>
    </div>`)
 
-   const editTitle = thisEle.querySelector('.edit__title')
-   const editDescription = thisEle.querySelector('.edit__description')
-   const editBadge = thisEle.querySelector('.edit__badge')
+   const titleEle = thisEle.querySelector('.edit__title')
+   const titleBoxEle = thisEle.querySelector('.edit__title-box')
+   const descriptionEle = thisEle.querySelector('.edit__description')
+   const badgeEle = thisEle.querySelector('.edit__badge')
    
    showTask(data)
 
@@ -51,31 +52,35 @@ _['app/tasks/editView'] = function initEditView (data) {
       'edit_close' () {
          api.listeners.onClose()
       },
-      'edit_mark' () {
+      'edit_mark' (d,t,e) {
          api.listeners.onMark()
       }
    })
 
 
-   editTitle.addEventListener('blur', ()=>{
-      api.listeners.onBlurTitle(editTitle.value)
-      
+   titleEle.addEventListener('focus', ()=>{
+      titleBoxEle.classList.add('edit__title-box--focus')
    })
 
-   editTitle.addEventListener('keyup', (e)=>{
+   titleEle.addEventListener('blur', ()=>{
+      titleBoxEle.classList.remove('edit__title-box--focus')
+      api.listeners.onBlurTitle(titleEle.value)
+   })
+
+   titleEle.addEventListener('keyup', (e)=>{
       if(e.key === "Enter") {
-         editTitle.blur()
-         editDescription.focus()
+         titleEle.blur()
+         descriptionEle.focus()
       }
    })
 
-   editDescription.addEventListener('blur', ()=>{
-      api.listeners.onBlurDescription(editDescription.value)
+   descriptionEle.addEventListener('blur', ()=>{
+      api.listeners.onBlurDescription(descriptionEle.value)
    })
 
-   editDescription.addEventListener('keydown', (e)=>{
+   descriptionEle.addEventListener('keydown', (e)=>{
       if(e.key === "Enter") {
-         editDescription.blur()
+         descriptionEle.blur()
          e.preventDefault()
       }
    })
@@ -85,6 +90,10 @@ _['app/tasks/editView'] = function initEditView (data) {
    const api = {}
 
    api.showTask = showTask
+   
+   api.focus = () => {
+      titleEle.focus()
+   }
 
    api.ele = thisEle
 
@@ -93,11 +102,13 @@ _['app/tasks/editView'] = function initEditView (data) {
 
 
 
-   function showTask (task = {}) {
-      editTitle.value = task.title || ''
-      editDescription.value = task.description || ''
-      editBadge.className = 'edit__badge' + (task.status? ' edit__badge--done': '')
+   function showTask (task = {}, { focus } = {}) {
+      titleEle.value = task.title || ''
+      descriptionEle.value = task.description || ''
+      badgeEle.className = 'edit__badge' + (task.status? ' edit__badge--done': '')
       
-      editTitle.focus()
+      if(focus !== false) {
+         titleEle.focus()
+      }
    }
 }

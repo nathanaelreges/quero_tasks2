@@ -57,6 +57,12 @@ _['app/tasks/tasksController'] = function initTasksController () {
 
 
    const tasksView = getTasksView(listView.ele)
+
+   tasksView.listeners = {
+      onAnimationFinished () {
+         editView.focus()
+      }
+   }
    
 
 
@@ -77,8 +83,8 @@ _['app/tasks/tasksController'] = function initTasksController () {
       }
       else
       if(!editViewOn) {
-         editView.showTask(model.getItem(selectedIndex))
          tasksView.showAside(editView.ele)
+         editView.showTask(model.getItem(selectedIndex))
          editViewOn = true
       }
       else {
@@ -98,7 +104,7 @@ _['app/tasks/tasksController'] = function initTasksController () {
       const updatedItem = model.getItem(index)
       
       if(selectedIndex == index) {
-         editView.showTask(updatedItem)
+         editView.showTask(updatedItem, {focus: false})
       }
    }
 

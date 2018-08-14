@@ -54,6 +54,8 @@ _['app/tasks/tasksView'] = function initTasksView (mainEle) {
 
       asideEle.classList.remove('transition_t-o')
       asideEle.style.willChange = ''
+      
+      api.listeners.onAnimationFinished()
 
    }
 
