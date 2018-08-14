@@ -53,6 +53,10 @@
          cursor: pointer;
       }
 
+         .dragging .list__row {
+            cursor: initial;
+         }
+
          .list__row--empty {
             padding-left: 30px;
             cursor: initial;
@@ -83,13 +87,13 @@
             border: unset;
          }
 
-            .list__list:not(.dragging) .list__row:hover .list__drag {
+            .list__row:hover .list__drag {
                visibility: unset;
             }
-
-            /*.dragging .list__drag {
-               visibility: hidden !important;
-            }*/
+            
+            .dragging .list__row:hover .list__drag {
+               visibility: hidden;
+            }
 
          /**/
 
@@ -117,6 +121,10 @@
                outline: unset;
                pointer-events: all;
             }
+
+               .dragging .task__badge {
+                  pointer-events: none;
+               }
 
                .task__badge--done {
                   border-color: lightseagreen;
@@ -148,7 +156,7 @@
                margin-left: auto;
             }
 
-               .list__row--selected .task__assign{
+               .list__row--selected .task__assign {
                   display: block;
                }
 
@@ -174,7 +182,8 @@
 
 
 /*
-
+Chrome 60 does not resolves :hover when the the mouse button
+is pressed. Using .drag-hover instead.
 .dragging  .drag-spot:not(.drag-target):hover {
    border-top: 1px solid greenyellow;
    padding-top: 0;
@@ -185,7 +194,6 @@
 }
 */
 
-
 .drag-hover {
    border-top: 1px solid greenyellow;
    padding-top: 0;
@@ -195,14 +203,6 @@
    transform: translateY(-1px);
 }
 
-.dragging .list__row {
-   cursor: initial;
+.drag-target {
+   opacity: 0.3;
 }
-
-.drag-target .task * {
-   opacity: 0.4;
-}
-
-
-
-/**/

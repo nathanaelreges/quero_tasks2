@@ -1,15 +1,12 @@
 _['app/tasks/listView'] = function initListView (data) {
    const { newEle, addActions }  = _['app/lib']
-   const getIconHtml  = _['app/lib/icons']
+   const { getIconHtml }  = _['app/lib/icons']
 
    let numberOfTasks = data.length
    let minNumberOfLines = 12
    
 
-   const _data = data.reduce((acc, cur)=>{
-      acc.push(cur)
-      return acc
-   }, [])
+   const _data = data.slice()
 
    do{
       _data.push(false)
@@ -17,9 +14,7 @@ _['app/tasks/listView'] = function initListView (data) {
 
 
 
-   /*
-   * Elements
-   */
+
    const thisEle = newEle(`<div class="list__box">
       <div class="list__header">
          <button type="button" class="list__add" data-act="list_add">Add Task</button>
@@ -85,25 +80,23 @@ _['app/tasks/listView'] = function initListView (data) {
       } 
    })
 
-   handleDragging ()
+   handleDragging()
 
 
    const api = {}
 
    api.addTask = (task) => {
-      if(numberOfTasks < minNumberOfLines - 1){
-         const newRowEle = getRowEle(task)
-         const oldRowEle = listEleChildren[numberOfTasks]
-         listEle.replaceChild(newRowEle, oldRowEle)
+      const newRowEle = getRowEle(task)
+      const firstEmptyRowEle = listEleChildren[numberOfTasks]
+      
+      if(numberOfTasks < minNumberOfLines - 1){   
+         listEle.replaceChild(newRowEle, firstEmptyRowEle)
       }
       else {
-         const newRowEle = getRowEle(task)
-         const lastRowEle = listEleChildren[numberOfTasks]
-         listEle.insertBefore(newRowEle, lastRowEle)
+         listEle.insertBefore(newRowEle, firstEmptyRowEle)
       }
 
       numberOfTasks++
-
       listEleChildren[numberOfTasks].classList.add('drag-spot')
    }
 
@@ -113,11 +106,11 @@ _['app/tasks/listView'] = function initListView (data) {
       listEle.insertBefore(rowEle, targetRowEle)
    }
 
-
    api.removeTask = (index) => {
       const rowEle = listEleChildren[index]
-      const newEmptyRowEle = renderRow()
-      listEle.replaceChild(newEmptyRowEle, rowEle)
+      rowEle.remove()
+      const newEmptyRowEle = getRowEle()
+      listEle.append(newEmptyRowEle)
    }
 
    api.changeTask = (index, what, value) => {
@@ -158,7 +151,6 @@ _['app/tasks/listView'] = function initListView (data) {
       }
    }
 
-
    api.ele = thisEle
 
    return api
@@ -178,45 +170,45 @@ _['app/tasks/listView'] = function initListView (data) {
 
 
 
+   /*
+   * TODO: Reafactor handleDrag into its own module
+   */
+
    function handleDragging () {
       listEle.addEventListener('mousedown', e => {
          if(e.target.className != 'list__drag'){return}
       
          const rowEle = e.target.parentElement
-         let hoverdEle = undefined   
+         let hoveredEle = undefined
          const originId = e.target.dataset.id
-
 
          rowEle.classList.add('drag-target')
          listEle.classList.add('dragging')
-         document.body.classList.add('drag-block-cursor')
    
          e.preventDefault()
    
-         
-         
 
          handleEventListener(listEle, 'add', ['mouseover'], handleHover)
          handleEventListener(window, 'add', ['mouseup', 'blur'], end)
 
    
-         function end (e)  {
-            listEle.classList.remove('dragging')   
-            document.body.classList.remove('drag-block-cursor')
+         function end ()  {
+            listEle.classList.remove('dragging')
             rowEle.classList.remove('drag-target')
             
             handleEventListener(listEle, 'remove', ['mouseover'], handleHover)
             handleEventListener(window, 'remove', ['mouseup', 'blur'], end)
             
-            if(!hoverdEle){return}
+            if(!hoveredEle){return}
 
-            hoverdEle.classList.remove('drag-hover')
+            hoveredEle.classList.remove('drag-hover')
 
-            let hoverdId = hoverdEle.dataset.id 
-            if(hoverdId === originId){return}
-            hoverdId = hoverdId? +hoverdId : 'end'
+            let hoveredId = hoveredEle.dataset.id 
+            if(hoveredId === originId){return}
+            
+            hoveredId = hoveredId? +hoveredId : 'end'
    
-            api.listeners.onDrag(+originId, hoverdId)
+            api.listeners.onDrag(+originId, hoveredId)
             
          }
    
@@ -227,21 +219,20 @@ _['app/tasks/listView'] = function initListView (data) {
          }
 
          function handleHover (e) {
-            if(!e.target.classList.contains('drag-spot')){return}
-            if(e.target.classList.contains('drag-target')){
-               
-               hoverdEle && hoverdEle.classList.remove('drag-hover')
-               hoverdEle = undefined
-               return
+            const ele = e.target
+            
+            if(!ele.classList.contains('drag-spot')){return}
+
+            hoveredEle && hoveredEle.classList.remove('drag-hover')
+            
+            if(ele.classList.contains('drag-target')){   
+               hoveredEle = undefined
             }
-
-            e.target.classList.add('drag-hover')
-            hoverdEle && hoverdEle.classList.remove('drag-hover')
-            hoverdEle = e.target
+            else {
+               ele.classList.add('drag-hover')
+               hoveredEle = ele
+            }
          }
-         
-
-
 
       })
    }

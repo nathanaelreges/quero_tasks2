@@ -9,11 +9,11 @@ _['app/tasks/tasksView'] = function initTasksView (mainEle) {
       </div>
    </div>`)
 
-   const LBoxEle = thisEle.querySelector('.tasks__l-box')
-   const LAsideEle = newEle('<div class="tasks__l-aside"></div>')
+   const lBoxEle = thisEle.querySelector('.tasks__l-box')
+   const lAsideEle = newEle('<div class="tasks__l-aside"></div>')
    let asideEle = undefined //used by api.showAside() & api.hideAside()
 
-   LBoxEle.append(mainEle)
+   lBoxEle.append(mainEle)
 
 
 
@@ -24,37 +24,36 @@ _['app/tasks/tasksView'] = function initTasksView (mainEle) {
 
    api.showAside = async function (ele) {
       asideEle = ele
-      const distanceFromLeft = LBoxEle.offsetLeft
+      const distanceFromLeft = lBoxEle.offsetLeft
 
-      LBoxEle.classList.add('transition_t')
-      LBoxEle.style.willChange = `transform`
-      LBoxEle.style.transform = `translateX(-${distanceFromLeft}px)`
+      lBoxEle.classList.add('transition_t')
+      lBoxEle.style.willChange = `transform`
+      lBoxEle.style.transform = `translateX(-${distanceFromLeft}px)`
 
       asideEle.classList.add('transition_t-o')
       asideEle.style.transform = `translateY(300px)`
       asideEle.style.opacity = '0'
       asideEle.style.willChange = `transform`
-      LAsideEle.append(asideEle)
+      lAsideEle.append(asideEle)
+      
       
       await addEventPromise(thisEle, 'transitionend')
-      LBoxEle.classList.remove('transition_t')
-      LBoxEle.style.transform = ''
+      lBoxEle.classList.remove('transition_t')
+      lBoxEle.style.transform = ''
 
-      thisEle.append(LAsideEle)
+      thisEle.append(lAsideEle)
       
-      await doubleRAFPromise()
 
+      await doubleRAFPromise()
       asideEle.style.transform = ''
       asideEle.style.opacity = '1'
 
+      
       await addEventPromise(thisEle, 'transitionend')
-
-      LBoxEle.style.willChange = ''
+      lBoxEle.style.willChange = ''
 
       asideEle.classList.remove('transition_t-o')
-      asideEle.style.willChange = `transform`
-      asideEle.style.transform = ''
-      asideEle.style.opacity = '1'
+      asideEle.style.willChange = ''
 
    }
 
@@ -69,9 +68,9 @@ _['app/tasks/tasksView'] = function initTasksView (mainEle) {
       asideEle.style.opacity = '0'
       asideEle.style.willChange = 'transform'
       
-      await addEventPromise(thisEle, 'transitionend')
 
-      LAsideEle.remove()
+      await addEventPromise(thisEle, 'transitionend')
+      lAsideEle.remove()
       asideEle.remove()
 
       asideEle.classList.remove('transition_t-o')
@@ -79,18 +78,18 @@ _['app/tasks/tasksView'] = function initTasksView (mainEle) {
       asideEle.style.willChange = ''
       asideEle = undefined
 
-      LBoxEle.style.willChange = `transform`
-      LBoxEle.style.transform = `translateX(-${distanceToMiddle}px)`
+      lBoxEle.style.willChange = `transform`
+      lBoxEle.style.transform = `translateX(-${distanceToMiddle}px)`
 
+      
       await doubleRAFPromise()
+      lBoxEle.classList.add('transition_t')
+      lBoxEle.style.transform = ''
 
-      LBoxEle.classList.add('transition_t')
-      LBoxEle.style.transform = ''
-
+      
       await addEventPromise(thisEle, 'transitionend')
-
-      LBoxEle.classList.remove('transition_t')
-      LBoxEle.style.willChange = ''
+      lBoxEle.classList.remove('transition_t')
+      lBoxEle.style.willChange = ''
 
    }
 

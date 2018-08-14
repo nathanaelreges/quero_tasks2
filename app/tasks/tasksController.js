@@ -26,9 +26,9 @@ _['app/tasks/tasksController'] = function initTasksController () {
       onSelect (id) {
          const index = model.getIndexForId(id)
          if(selectedIndex === index){return}
+         
+         listView.selectTask(index)
          selectedIndex = index
-
-         listView.selectTask(selectedIndex)
          handleEdit()
       },
       onDrag (from, to) {
@@ -102,7 +102,6 @@ _['app/tasks/tasksController'] = function initTasksController () {
          editView.showTask(updatedItem)
       }
    }
-
 
 
 

@@ -1,6 +1,6 @@
 _['app/tasks/editView'] = function initEditView (data) {
    const {newEle, addActions}  = _['app/lib']
-   const getIconHtml  = _['app/lib/icons']
+   const { getIconHtml }   = _['app/lib/icons']
 
 
    const markIconHtml = getIconHtml('mark')
