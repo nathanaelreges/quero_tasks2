@@ -1,19 +1,13 @@
 _['app/model'] = function theModel () {
 
-   const listJSON = localStorage.getItem('quero_tasks')
+   const savedListJSON = localStorage.getItem('quero_tasks')
+   const list = savedListJSON? JSON.parse(savedListJSON) : []
+   
    const savedLastId = localStorage.getItem('quero_tasks-lastid')
-   const list = listJSON? JSON.parse(listJSON) : []
    let lastId = savedLastId? Number.parseInt(savedLastId) : 0
 
-/*
-   window.addEventListener('unload', ()=>{
-      localStorage.setItem('quero_tasks', JSON.stringify(list))
-      localStorage.setItem('quero_tasks-lastid', JSON.stringify(lastId))
-   })
-*/
 
-
-
+   
 
    const api = {}
 
@@ -41,13 +35,17 @@ _['app/model'] = function theModel () {
       return list[index]
    }
 
-   api.updateItem = (index, {title, description}) => {
+   api.updateItem = (index, {title, description, status}) => {
       if(typeof title == 'string') {
          list[index].title = title
       }
 
       if(typeof description == 'string') {
          list[index].description = description
+      }
+
+      if(typeof status == 'boolean') {
+         list[index].status = status
       }
 
       saveList()
@@ -72,7 +70,7 @@ _['app/model'] = function theModel () {
    }
    
    api.getList = () => {
-      const copyOfList = list.map(x=>x)
+      const copyOfList = list.slice()
       return copyOfList
    }
 
@@ -93,7 +91,7 @@ _['app/model'] = function theModel () {
    }
 }
 
-/*
+/* snippet to clear saved tasks on reload
 window.addEventListener('unload', ()=>{
    localStorage.clear()
 })

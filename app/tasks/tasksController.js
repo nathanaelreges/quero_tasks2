@@ -49,9 +49,7 @@ _['app/tasks/tasksController'] = function initTasksController () {
             selectedIndex = model.getIndexForId(selectedId)
          }
       },
-      onMark (id) {
-         handleMark(id)
-      }
+      onMark: handleMark
    }
 
 
@@ -92,11 +90,12 @@ _['app/tasks/tasksController'] = function initTasksController () {
    
    function handleMark (id) {
       const index = id? model.getIndexForId(id): selectedIndex
-      model.toggleStatus(index)
+      const value = !model.getItem(index).status
+      
+      model.updateItem(index, {status: value})
+      listView.changeTask(index, {status: value})
       
       const updatedItem = model.getItem(index)
-      
-      listView.changeTask(index, 'status', updatedItem.status)
       
       if(selectedIndex == index) {
          editView.showTask(updatedItem)
@@ -114,7 +113,7 @@ _['app/tasks/tasksController'] = function initTasksController () {
          },
          onBlurTitle (value) {
             model.updateItem(selectedIndex, {title: value})
-            listView.changeTask(selectedIndex, 'text', value)
+            listView.changeTask(selectedIndex, {title: value})
          },
          onClose () {
             tasksView.removeAside()
@@ -122,9 +121,7 @@ _['app/tasks/tasksController'] = function initTasksController () {
             editViewOn = false
             selectedIndex = undefined
          },
-         onMark () {
-            handleMark()
-         }
+         onMark: handleMark
       }
    }
 }

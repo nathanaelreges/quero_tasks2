@@ -29,7 +29,7 @@ _['app/tasks/editView'] = function initEditView (data) {
                   <button type="button" class="edit__badge" data-act="edit_mark">
                      ${markIconHtml}
                   </button>
-                  <input type="text" name class="edit__title" placeholder="New Task" />
+                  <input type="text" name class="edit__title" autofocus placeholder="New Task" />
                </div>
                <textarea type="text" class="edit__description" placeholder="Description" rows="3"></textarea>
             </form>
@@ -65,6 +65,7 @@ _['app/tasks/editView'] = function initEditView (data) {
    editTitle.addEventListener('keyup', (e)=>{
       if(e.key === "Enter") {
          editTitle.blur()
+         editDescription.focus()
       }
    })
 
@@ -96,5 +97,7 @@ _['app/tasks/editView'] = function initEditView (data) {
       editTitle.value = task.title || ''
       editDescription.value = task.description || ''
       editBadge.className = 'edit__badge' + (task.status? ' edit__badge--done': '')
+      
+      editTitle.focus()
    }
 }

@@ -113,17 +113,18 @@ _['app/tasks/listView'] = function initListView (data) {
       listEle.append(newEmptyRowEle)
    }
 
-   api.changeTask = (index, what, value) => {
-      if(what == 'text') {
-         const rowEle = listEleChildren[index]
+   api.changeTask = (index, {title, status}) => {
+      const rowEle = listEleChildren[index]
+
+      if(typeof title == 'string') {
          const taskTextEle = rowEle.querySelector('.task__text')
-         taskTextEle.innerText = value
+         taskTextEle.innerText = title
       }
-      else 
-      if(what == 'status') {
-         const rowEle = listEleChildren[index]
+      
+      if(typeof status == 'boolean') {
          const badgeEle = rowEle.querySelector('.task__badge')
-         if(value){
+
+         if(status){
             badgeEle.classList.add('task__badge--done')
          }
          else {

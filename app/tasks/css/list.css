@@ -125,19 +125,20 @@
                .dragging .task__badge {
                   pointer-events: none;
                }
-
-               .task__badge--done {
-                  border-color: lightseagreen;
-               }
+               
                .task__badge svg {
                   pointer-events: none;
                   stroke: lightgray;
                }
-
-               .task__badge--done svg {
-                  stroke: lightseagreen;
+               
+               .task__badge--done {
+                  background-color: lightseagreen;
+                  border-color: white;
                }
 
+               .task__badge--done svg {
+                  stroke: white;
+               }
 
             /**/
 
