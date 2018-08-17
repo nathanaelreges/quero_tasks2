@@ -32,10 +32,16 @@ button {
    transition: 150ms ease-in-out transform, 150ms ease-in-out opacity;
 }
 
+.transition_t-w {
+   transition: 150ms ease-in-out transform, 150ms ease-in-out width;
+}
+
+
 .grid {
    display: flex;
    flex-direction: column;
    height: 100%;
+   overflow: hidden;
 }
 
 .header {
@@ -249,6 +255,7 @@ button {
       flex-grow: 1;
       background: top/cover url("bg-img.jpg");
       display: flex;
+      justify-content: center;
    }
 
 /**/

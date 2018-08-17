@@ -1,17 +1,20 @@
 .tasks {
    width: 100%;
+   max-width: 1600px;
    display: flex;
    justify-content: center;
 }
 
-   .tasks__l-box{
-      width: 55%;
+   .tasks__l-box {
+      max-width: 1000px;
       padding: 15px 7.5px 0 15px;
+      flex-grow: 1;
    }
 
    .tasks__l-aside {
       overflow: hidden;
       width: 45%;
+      min-width: 460px;
       display: flex;
    }
    

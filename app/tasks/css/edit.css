@@ -27,6 +27,7 @@
             width: 30px;
             border-radius: 100%;
             margin-right: 10px;
+            flex-shrink: 0;
          }
          
          .edit__user-name {
@@ -40,6 +41,7 @@
             border: 2px solid lightgray;
             border-radius: 100%;
             margin-right: 25px;
+            flex-shrink: 0;
          }
          
          .edit__date{
