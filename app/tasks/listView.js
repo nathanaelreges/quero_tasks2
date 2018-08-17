@@ -15,10 +15,16 @@ _['app/tasks/listView'] = function initListView (data) {
 
 
 
+   const markIconHtml = getIconHtml('mark')
+   const arrowIconHtml = getIconHtml('arrow')
+   const configIconHtml = getIconHtml('config')
+
    const thisEle = newEle(`<div class="list__box">
       <div class="list__header">
          <button type="button" class="list__add" data-act="list_add">Add Task</button>
-         <button type="button" class="list__config"></button>
+         <button type="button" class="list__config">
+            ${configIconHtml}
+         </button>
       </div>
       <div class="list__body">
          <ul class="list__list">
@@ -31,7 +37,7 @@ _['app/tasks/listView'] = function initListView (data) {
          return `<div class="list__row drag-spot" data-act="list_select" data-id="${task.id}">
             <button rel="button" class="list__drag" data-id="${task.id}">...<br/>...</button>
             ${renderTask(task)}
-            <span class="list__arrow">></span>
+            <span class="list__arrow">${arrowIconHtml}</span>
          </div>`
       }
       else {
@@ -41,7 +47,7 @@ _['app/tasks/listView'] = function initListView (data) {
       }
    }
 
-   const markIconHtml = getIconHtml('mark')
+
 
    function renderTask (task) {
       return `<li class="task" >

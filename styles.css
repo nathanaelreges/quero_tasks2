@@ -63,13 +63,12 @@ button {
       }
 
          .header__menu-link {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
+            display: inline;
          }
 
          .header__menu-icon {
-            stroke: grey;
+            fill: grey;
+            height: 20px;
          }
 
       /**/
