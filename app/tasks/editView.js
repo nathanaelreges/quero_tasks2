@@ -4,6 +4,11 @@ _['app/tasks/editView'] = function initEditView (data) {
 
 
    const markIconHtml = getIconHtml('mark')
+   const connectIconHtml = getIconHtml('connect')
+   const clipIconHtml = getIconHtml('clip')
+   const calendarIconHtml = getIconHtml('calendar')
+   const heartIconHtml = getIconHtml('heart')
+   const dotsIconHtml = getIconHtml('dots')
 
    const thisEle = newEle(`<div class="edit">
       <div class="edit__box">
@@ -12,13 +17,33 @@ _['app/tasks/editView'] = function initEditView (data) {
             <div class="edit__user-name">Roger Garcia</div>
             <div class="edit__user-status"></div>
             <button class="edit__date">
-               <div class="edit__date-icon"></div>
+               <div class="edit__date-icon">
+                  <div class="edit__icon">
+                     ${calendarIconHtml}
+                  </div>
+               </div>
                <div class="edit__date-text">Due Date</div>
             </button>
-            <button class="edit__button"></button>
-            <button class="edit__button"></button>
-            <button class="edit__button"></button>
-            <button class="edit__button"></button>
+            <button class="edit__button">
+               <div class="edit__icon">
+                  ${heartIconHtml}
+               </div>
+            </button>
+            <button class="edit__button">
+               <div class="edit__icon">
+                  ${connectIconHtml}
+               </div>
+            </button>
+            <button class="edit__button">
+               <div class="edit__icon">   
+                  ${clipIconHtml}
+               </div>
+            </button>
+            <button class="edit__button">
+               <div class="edit__icon">
+                  ${dotsIconHtml}
+               </div>
+            </button>
             <button class="edit__close" data-act="edit_close">
                <span class="edit__close-text">+</span>
             </button>

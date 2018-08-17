@@ -116,15 +116,16 @@ button {
       }
 
          .header__lens{
-            display: inline-block;
+            display: flex;
             width: 20px;
             height: 20px;
             margin-right: 10px;
             border-radius: 100%;
-
          }
-            .header__lens-icon path{
-               fill: gray;
+         
+            .header__lens svg {
+               height: 20px;
+               stroke: lightgray;
             }
 
          /**/
