@@ -186,7 +186,6 @@ button {
       }
 
       .header__user-img {
-         border: 1px solid #adb5b4;
          height: 30px;
          width: 30px;
          border-radius: 100%;
@@ -217,7 +216,6 @@ button {
       }
          
          .main__user-img{
-            border: 1px solid #adb5b4;
             background-color: white;
             height: 30px;
             width: 30px;

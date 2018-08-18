@@ -21,7 +21,6 @@
       }
 
          .edit__user-img{
-            border: 1px solid #adb5b4;
             background-color: white;
             height: 30px;
             width: 30px;
@@ -148,11 +147,11 @@
                .edit__title-box:hover{
                   border: 1px solid #ececec;
                }
-
-               .edit__title-box--focus {
+               
+               /*.edit__title-box--focus {
                   border-color: transparent !important;
-                  /*box-shadow: 0 0 0 2px lightskyblue;*/
-               }
+                  box-shadow: 0 0 0 2px lightskyblue;
+               }*/
 
                .edit__badge {
                   background-color: unset;
@@ -210,10 +209,10 @@
                   border-color: #ececec;
                }
 
-               .edit__description:focus{
+               /*.edit__description:focus{
                   border-color: transparent !important;
-                  /*box-shadow: 0 0 0 2px lightskyblue;*/
-               }
+                  box-shadow: 0 0 0 2px lightskyblue;
+               }*/
 
                .edit__description::placeholder {
                   color: #adb5b4;
@@ -245,7 +244,6 @@
          }
 
          .edit__user-img--comments {
-            border-color: #ececec;
          }
 
          .edit__comment::placeholder {
