@@ -29,6 +29,7 @@
             border-radius: 100%;
             margin-right: 10px;
             flex-shrink: 0;
+            background: top/cover url("../../../user-img.jpg");
          }
          
          .edit__user-name {
@@ -122,6 +123,14 @@
          padding: 50px 20px 20px;
          overflow-y: overlay;
       }
+
+         .edit__body::-webkit-scrollbar {
+            width: 5px;
+         }
+         
+         .edit__body::-webkit-scrollbar-thumb {
+            background-color: #adb5b4;
+         }
 
          .edit__form{
             display: flex;

@@ -52,8 +52,18 @@
       display: block;
       overflow-y: overlay;
    }
+
+      .list__body::-webkit-scrollbar {
+         width: 5px;
+      }
+      
+      .list__body::-webkit-scrollbar-thumb {
+         background-color: #adb5b4;
+      }
    
-   .list__list {
+   /**/
+   
+      .list__list {
       list-style: none;
       margin: 0;
       padding: 2px 0px 50px 0px;
@@ -233,10 +243,3 @@ is pressed. Using .drag-hover instead.
 
 
 
-.list__body::-webkit-scrollbar {
-   width: 5px;
-}
-
-.list__body::-webkit-scrollbar-thumb {
-   background-color: #adb5b4;
-}

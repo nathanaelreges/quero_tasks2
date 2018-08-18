@@ -192,6 +192,7 @@ button {
          border-radius: 100%;
          margin-right: 25px;
          flex-shrink: 0;
+         background: top/cover url("user-img.jpg");
       }
 
    /**/
@@ -222,6 +223,7 @@ button {
             width: 30px;
             border-radius: 100%;
             margin-right: 10px;
+            background: top/cover url("user-img.jpg");
          }
 
          .main__title {
