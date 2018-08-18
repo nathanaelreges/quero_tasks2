@@ -6,9 +6,9 @@
 }
 
    .tasks__l-box {
+      width: 100%;
       max-width: 1000px;
       padding: 15px 7.5px 0 15px;
-      flex-grow: 1;
    }
 
    .tasks__l-aside {
@@ -16,6 +16,7 @@
       width: 45%;
       min-width: 460px;
       display: flex;
+      flex-shrink: 0;
    }
    
 /**/

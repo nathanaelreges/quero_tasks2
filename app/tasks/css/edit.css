@@ -1,6 +1,7 @@
 .edit{
    padding: 15px 15px 0 7.5px;
    width: 100%;
+   box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.20);
 }
 
    .edit__box{
@@ -13,7 +14,7 @@
 
       .edit__header {
          height: 50px;
-         border-bottom: 1px solid lightgray;
+         border-bottom: 1px solid #ececec;
          display: flex;
          align-items: center;
          flex-shrink: 0;
@@ -21,7 +22,7 @@
       }
 
          .edit__user-img{
-            border: 1px solid lightgray;
+            border: 1px solid #adb5b4;
             background-color: white;
             height: 30px;
             width: 30px;
@@ -38,7 +39,7 @@
          .edit__user-status{
             height: 15px;
             width: 15px;
-            border: 2px solid lightgray;
+            border: 2px solid #adb5b4;
             border-radius: 100%;
             margin-right: 25px;
             flex-shrink: 0;
@@ -54,7 +55,7 @@
          }
 
             .edit__date-icon{
-               border: 1px solid lightgrey;
+               border: 1px solid #adb5b4;
                border-radius: 100%;
                border-style: dashed;
                height: 30px;
@@ -62,7 +63,7 @@
             }
          
             .edit__date-text{
-               color: gray;
+               color: #adb5b4;
                margin: 0 15px 0 5px;
             }
          
@@ -71,7 +72,7 @@
          .edit__button {
             outline: none;
             background: none;
-            border: 1px solid lightgrey;
+            border: 1px solid #adb5b4;
             height: 30px;
             width: 30px;
             border-radius: 100%;
@@ -90,7 +91,7 @@
             .edit__icon svg {
                height: 20px;
                width: 20px;
-               stroke: lightgray;
+               stroke: #adb5b4;
             }
 
          /**/
@@ -102,7 +103,7 @@
             align-self: flex-start;
             margin: 3px 5px;
             padding: 0 5px;
-            color: lightgray;
+            color: #adb5b4;
             font-size: 30px;
             font-weight: 400;
             margin-left: auto;
@@ -119,6 +120,7 @@
       
       .edit__body {
          padding: 50px 20px 20px;
+         overflow-y: overlay;
       }
 
          .edit__form{
@@ -136,17 +138,17 @@
             }
 
                .edit__title-box:hover{
-                  border: 1px solid lightgray;
+                  border: 1px solid #ececec;
                }
 
                .edit__title-box--focus {
                   border-color: transparent !important;
-                  box-shadow: 0 0 0 2px lightskyblue;
+                  /*box-shadow: 0 0 0 2px lightskyblue;*/
                }
 
                .edit__badge {
                   background-color: unset;
-                  border: 1px solid lightgrey;
+                  border: 1px solid #adb5b4;
                   border-radius: 100%;
                   height: 30px;
                   width: 30px;
@@ -159,7 +161,7 @@
 
                   .edit__badge svg {
                      pointer-events: none;
-                     stroke: lightgray;
+                     stroke: #adb5b4;
                   }
                   
                   .edit__badge--done svg {
@@ -179,7 +181,7 @@
                }
 
                   .edit__title::placeholder {
-                     color: lightgray;
+                     color: #adb5b4;
                   }
                
                /**/
@@ -197,16 +199,16 @@
             }
 
                .edit__description:hover {
-                  border-color: lightgray;
+                  border-color: #ececec;
                }
 
                .edit__description:focus{
                   border-color: transparent !important;
-                  box-shadow: 0 0 0 2px lightskyblue;
+                  /*box-shadow: 0 0 0 2px lightskyblue;*/
                }
 
                .edit__description::placeholder {
-                  color: lightgray;
+                  color: #adb5b4;
                }
             
             /**/
@@ -219,7 +221,7 @@
          display: flex;
          align-items: flex-start;
          background-color: #f6f8f9;
-         border-top: 1px solid lightgray;
+         border-top: 1px solid #ececec;
       }
          .edit__user-img--comments {
             display: initial;
@@ -228,14 +230,18 @@
          .edit__comment {
             font-family: Helvetica, Arial, sans-serif; 
             padding: 15px 10px;
-            border: 1px solid lightgray;
+            border: 1px solid #ececec;
             resize: none;
             border-radius: 3px;
             flex-grow: 1;
          }
 
+         .edit__user-img--comments {
+            border-color: #ececec;
+         }
+
          .edit__comment::placeholder {
-            color: lightgray;
+            color: #ececec;
          }
 
       /**/

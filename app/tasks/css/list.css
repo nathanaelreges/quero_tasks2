@@ -4,11 +4,12 @@
    background: white;
    display: flex;
    flex-direction: column;
+   box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.20);
 }
 
    .list__header {
       height: 50px;
-      border-bottom: 1px solid lightgray;
+      border-bottom: 1px solid #ececec;
       display: flex;
       align-items: center;
       padding-left: 30px;
@@ -31,7 +32,6 @@
          background: none;
          border: none;
          margin-left: auto;
-         height: 100%;
          display: flex;
          justify-content: center;
          align-items: center;
@@ -41,7 +41,7 @@
          .list__config svg {
             height: 20px;
             width: 20px;
-            stroke: lightgray;
+            stroke: #adb5b4;
          }
 
       /**/
@@ -70,7 +70,7 @@
          }
 
          .list__row--empty {
-            padding-left: 30px;
+            padding: 0px 30px;
             cursor: initial;
          }
          
@@ -89,7 +89,7 @@
             line-height: 0.5rem;
             font-size: 1.3rem;
             font-weight: 700;
-            color: lightgray;
+            color: #adb5b4;
             text-align: center;
             padding: 0;
             padding-bottom: 9px;
@@ -114,7 +114,7 @@
             display: flex;
             align-items: center;
             height: 35px;
-            border-bottom: 1px solid lightgray;
+            border-bottom: 1px solid #ececec;
             pointer-events: none;
          }
 
@@ -123,7 +123,7 @@
             }
 
             .task__badge {
-               border: 1px solid lightgrey;
+               border: 1px solid #adb5b4;
                border-radius: 100%;
                background-color: unset;
                height: 20px;
@@ -140,7 +140,7 @@
                
                .task__badge svg {
                   pointer-events: none;
-                  stroke: lightgray;
+                  stroke: #adb5b4;
                }
                
                .task__badge--done {
@@ -165,7 +165,7 @@
                height: 14px;
                width: 14px;
                padding: 0;
-               border: 2px solid lightgray;
+               border: 2px solid #adb5b4;
                border-radius: 100%;
                margin-left: auto;
             }
@@ -190,7 +190,7 @@
                transform: rotate(-90deg);
                height: 10px;
                width: 10px;
-               stroke: lightgray;
+               stroke: #adb5b4;
             }
 
             .list__row--selected .list__arrow {
@@ -238,5 +238,5 @@ is pressed. Using .drag-hover instead.
 }
 
 .list__body::-webkit-scrollbar-thumb {
-   background-color: darkgrey;
+   background-color: #adb5b4;
 }
