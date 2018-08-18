@@ -192,7 +192,7 @@ button {
          border-radius: 100%;
          margin-right: 25px;
          flex-shrink: 0;
-         background: top/cover url("user-img.jpg");
+         background: top/cover url("img/user.jpg");
       }
 
    /**/
@@ -223,7 +223,7 @@ button {
             width: 30px;
             border-radius: 100%;
             margin-right: 10px;
-            background: top/cover url("user-img.jpg");
+            background: top/cover url("img/user.jpg");
          }
 
          .main__title {
@@ -264,7 +264,7 @@ button {
 
    .main__body {
       flex-grow: 1;
-      background: top/cover url("bg-img.jpg");
+      background: top/cover url("img/bg.jpg");
       display: flex;
       justify-content: center;
    }

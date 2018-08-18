@@ -1,5 +1,4 @@
 .edit{
-   padding: 15px 15px 0 7.5px;
    width: 100%;
    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.20);
 }
@@ -29,7 +28,7 @@
             border-radius: 100%;
             margin-right: 10px;
             flex-shrink: 0;
-            background: top/cover url("../../../user-img.jpg");
+            background: top/cover url("../../../img/user.jpg");
          }
          
          .edit__user-name {
@@ -250,7 +249,7 @@
          }
 
          .edit__comment::placeholder {
-            color: #ececec;
+            color: #adb5b4;
          }
 
       /**/

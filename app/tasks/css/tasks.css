@@ -3,6 +3,7 @@
    max-width: 1600px;
    display: flex;
    justify-content: center;
+   margin-right: 5px;
 }
 
    .tasks__l-box {
@@ -12,11 +13,11 @@
    }
 
    .tasks__l-aside {
-      overflow: hidden;
       width: 45%;
       min-width: 460px;
+      flex-shrink: 0; 
       display: flex;
-      flex-shrink: 0;
+      padding: 15px 7.5px 0 7.5px;
    }
    
 /**/

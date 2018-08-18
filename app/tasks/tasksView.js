@@ -34,8 +34,6 @@ _['app/tasks/tasksView'] = function initTasksView (mainEle) {
       
       const boxNewWidth = fullWidth - asideWidth
       const boxDistance = (fullWidth - boxWidth) / 2
-      const bigBox = boxWidth == fullWidth
-      
 
       //Gettig asideEle ready
       asideEle.classList.add('transition_t-o')
@@ -47,9 +45,9 @@ _['app/tasks/tasksView'] = function initTasksView (mainEle) {
 
       lBoxEle.style.width = `${boxWidth}px`
 
-      await doubleRAFPromise()
 
-      if(!bigBox){
+      await doubleRAFPromise()
+      if(boxDistance > 0){
          lBoxEle.classList.add('transition_t-w')
          lBoxEle.style.willChange = `transform`
          lBoxEle.style.transform = `translateX(-${boxDistance}px)`
@@ -62,7 +60,6 @@ _['app/tasks/tasksView'] = function initTasksView (mainEle) {
       lBoxEle.style.marginRight = 'auto'
       lBoxEle.style.flexShirink = '0'
       
-   
       
       await doubleRAFPromise()
       lBoxEle.classList.add('transition_t-w')
@@ -79,15 +76,19 @@ _['app/tasks/tasksView'] = function initTasksView (mainEle) {
       
       
       await addEventPromise(thisEle, 'transitionend')
+      //Reseting aside ele
       lBoxEle.classList.remove('transition_t-w')
       lBoxEle.style.willChange = ''
       lBoxEle.style.marginRight = ''
       lBoxEle.style.width = ''
+      //
 
+      //Reseting box ele
       asideEle.classList.remove('transition_t-o')
       asideEle.style.willChange = ''
       asideEle.style.opacity = ''
-      
+      //
+
       api.listeners.onAnimationFinished()
    }
 
@@ -98,7 +99,7 @@ _['app/tasks/tasksView'] = function initTasksView (mainEle) {
       const fullWidth = thisEle.offsetWidth
       const boxWidth = lBoxEle.offsetWidth
       const boxNewWidth = fullWidth <= 1000? fullWidth: 1000
-      const distanceToMiddle = fullWidth <= 1000? 0: (fullWidth - 1000)/2
+      const boxDistance = fullWidth <= 1000? 0: (fullWidth - 1000)/2
 
       asideEle.classList.add('transition_t-o')
       asideEle.style.opacity = '0'
@@ -107,13 +108,15 @@ _['app/tasks/tasksView'] = function initTasksView (mainEle) {
       lBoxEle.style.width = `${boxWidth}px`
 
       await addEventPromise(thisEle, 'transitionend')
+      
+      //Reseting aside ele
       lAsideEle.remove()
       asideEle.remove()
-
       asideEle.classList.remove('transition_t-o')
       asideEle.style.opacity = ''
       asideEle.style.willChange = ''
       asideEle = undefined
+      //
 
       lBoxEle.style.willChange = `transform`
       lBoxEle.style.marginRight = 'auto'
@@ -123,16 +126,18 @@ _['app/tasks/tasksView'] = function initTasksView (mainEle) {
       lBoxEle.classList.add('transition_t-w')
       lBoxEle.style.width = `${boxNewWidth}px`
       
+
       await addEventPromise(thisEle, 'transitionend')
       lBoxEle.classList.remove('transition_t-w')
       lBoxEle.style.marginRight = ''
 
-      if(distanceToMiddle> 0){
-         lBoxEle.style.transform =  `translateX(-${distanceToMiddle}px)`
+      if(boxDistance> 0){
+         lBoxEle.style.transform =  `translateX(-${boxDistance}px)`
 
          await doubleRAFPromise()
          lBoxEle.classList.add('transition_t-w')
          lBoxEle.style.transform = ''
+      
          
          await addEventPromise(thisEle, 'transitionend')
          lBoxEle.classList.remove('transition_t-w')
